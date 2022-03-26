@@ -80,6 +80,13 @@ case $yn in
         ;;
 esac
 
+read -p "是否需要部署 aliyundrive-webdav? [y/n]:" yn
+case $yn in
+    [Yy]* )
+        ./scripts/install-aliyundrive-webdav.sh $domain $base_data_dir $docker_network_name
+        ;;
+esac
+
 read -p "是否需要部署aria2? [y/n]:" yn
 case $yn in
     [Yy]* )
