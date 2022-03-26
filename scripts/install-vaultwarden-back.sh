@@ -19,9 +19,10 @@ case $resetConfig in
         -v $base_data_dir/vaultwarden-backup/config:/config \
         ttionya/vaultwarden-backup:latest \
         rclone config
-    ;;
+        ;;
     * )
         echo "不修改配置文件"
+        ;;
 esac
 echo "当前rclone配置如下: "
 
@@ -53,17 +54,17 @@ fi
 
 echo "备份压缩文件的密码为: $BACKUP_ZIP_PASSWORD"
 
-
 echo "备份到的rclone远程目录为: $MY_BACKUP_RCLONE_REMOTE"
 
+`dirname $0`/stop-container.sh vaultwarden-backup
 docker run -d \
 --restart=always \
---network=$docker_network_name \
 -m 50M \
---name vaultwarden_backup \
+--name vaultwarden-backup \
 -v $base_data_dir/vaultwarden-backup/config:/config \
 -v $base_data_dir/vaultwarden/data:/vaultwarden/data \
 -e ZIP_PASSWORD=$BACKUP_ZIP_PASSWORD \
+-e DATA_DIR=/vaultwarden/data \
 -e RCLONE_REMOTE_NAME="$MY_BACKUP_RCLONE_REMOTE" \
 -e TZ=Asia/Shanghai \
 -e LANG=zh_CN.UTF-8 \
