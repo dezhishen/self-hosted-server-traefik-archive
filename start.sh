@@ -23,16 +23,16 @@ if [ -z "$base_data_dir" ]; then
     ./scripts/set-args.sh base_data_dir $base_data_dir
 fi
 
-docker_network_name=`./scripts/get-args.sh docker_network_name "Docker网络名称(如 ingress)"`
+docker_network_name=`./scripts/get-args.sh docker_network_name "Docker网络名称(如 traefik)"`
 
 if [ -z "$docker_network_name" ]; then
-    read -p "请输入Docker网络名称(如 ingress):" docker_network_name
+    read -p "请输入Docker网络名称(如 traefik):" docker_network_name
     if [ -z "$docker_network_name" ]; then
-        echo "Docker网络名称为空,使用默认值 ingress"
-        docker_network_name=ingress
+        echo "Docker网络名称为空,使用默认值 traefik"
+        docker_network_name=traefik
     fi
-    docker_network_name=ingress
-    ./scripts/set-args.sh docker_network_name ingress
+    docker_network_name=traefik
+    ./scripts/set-args.sh docker_network_name $docker_network_name
 fi
 
 echo "开始创建根目录"
