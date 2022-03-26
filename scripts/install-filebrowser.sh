@@ -17,7 +17,7 @@ if [ ! -f $base_data_dir/filebrowser/filebrowser.json ];then
 else
     echo "filebrowser.json 已存在，不需要复制,filebrowser.json already exist"
 fi
-
+rule='Host(`filebrowser.'$domain'`)'
 docker run -d --restart=always --name=filebrowser \
 -m 128M \
 --network=$docker_network_name \
@@ -27,7 +27,7 @@ docker run -d --restart=always --name=filebrowser \
 -v "$base_data_dir/filebrowser/filebrowser.json:/.filebrowser.json" \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
---label 'traefik.http.routers.filebrowser.rule=Host(`filebrowser.$domain`)' \
+--label "traefik.http.routers.filebrowser.rule=$rule" \
 --label "traefik.http.routers.filebrowser.tls=true" \
 --label "traefik.http.routers.filebrowser.tls.certresolver=traefik" \
 --label "traefik.http.routers.filebrowser.tls.domains[0].main=filebrowser.$domain" \

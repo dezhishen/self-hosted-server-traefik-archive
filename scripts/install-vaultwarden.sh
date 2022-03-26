@@ -8,7 +8,7 @@ docker_network_name=$3
 `dirname $0`/create-dir.sh $base_data_dir/vaultwarden/data
 
 `dirname $0`/stop-container.sh vaultwarden
-
+rule='Host(`vaultwarden.'$domain'`)'
 docker run -d --name vaultwarden \
 --restart=always \
 -e TZ="Asia/Shanghai" \
@@ -18,7 +18,7 @@ docker run -d --name vaultwarden \
 -u $(id -u):$(id -g) \
 --network=$docker_network_name \
 -v $base_data_dir/vaultwarden/data:/data/  \
---label 'traefik.http.routers.vaultwarden.rule=Host(`vaultwarden.$domain`)' \
+--label "traefik.http.routers.vaultwarden.rule=$rule" \
 --label "traefik.http.routers.vaultwarden.tls=true" \
 --label "traefik.http.routers.vaultwarden.tls.certresolver=traefik" \
 --label "traefik.http.routers.vaultwarden.tls.domains[0].main=vaultwarden.$domain" \

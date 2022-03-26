@@ -31,12 +31,13 @@ if [ -z "$ALIYUNDRIVE_WEBDAV_PASSWORD" ]; then
     read -p "请输入aliyundrive-webdav的密码: " ALIYUNDRIVE_WEBDAV_PASSWORD
     if [ -z "$ALIYUNDRIVE_WEBDAV_PASSWORD" ]; then
         echo "aliyundrive-webdav的密码为空,即将随机生成"
-        ALIYUNDRIVE_WEBDAV_PASSWORD=`head -c 8 /dev/urandom | base64`
+        ALIYUNDRIVE_WEBDAV_PASSWORD=`$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)`
     fi
     `dirname $0`/set-args.sh ALIYUNDRIVE_WEBDAV_PASSWORD $ALIYUNDRIVE_WEBDAV_PASSWORD
     echo "aliyundrive-webdav的密码: $ALIYUNDRIVE_WEBDAV_PASSWORD"
 fi
 
+rule='Host(`aliyundrive-webdav.'$domain'`)'
 echo "启动aliyundrive-webdav容器"
 docker run --name=aliyundrive-webdav \
 --restart=always -m 128M \
@@ -47,7 +48,7 @@ docker run --name=aliyundrive-webdav \
 -e WEBDAV_AUTH_USER=$ALIYUNDRIVE_WEBDAV_AUTH_USERNAME \
 -e WEBDAV_AUTH_PASSWORD=$ALIYUNDRIVE_WEBDAV_PASSWORD \
 -v $base_data_dir/aliyundrive-webdav:/etc/aliyundrive-webdav \
---label 'traefik.http.routers.aliyundrive-webdav.rule=Host(`aliyundrive-webdav.$domain`)' \
+--label "traefik.http.routers.aliyundrive-webdav.rule=$rule" \
 --label "traefik.http.routers.aliyundrive-webdav.tls=true" \
 --label "traefik.http.routers.aliyundrive-webdav.tls.certresolver=traefik" \
 --label "traefik.http.routers.aliyundrive-webdav.tls.domains[0].main=aliyundrive-webdav.$domain" \
