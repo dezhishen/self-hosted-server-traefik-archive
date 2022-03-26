@@ -110,14 +110,15 @@ sudo systemctl restart docker
 
 ### 安装应用
 ```
-git clone 
-cd
+git clone https://github.com/dezhishen/self-hosted-server-traefik.git
+cd self-hosted-server-traefik
 chmod +x ./start.sh
 chmod +x -R ./scripts
 ./start.sh
 ```
 
 ## 预期结果
+**使用过的配置文件都存放在项目目录的.args下面**
 ### 目录结构
 ```
 - docker_data # filebrowser 文件挂载根目录
