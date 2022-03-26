@@ -1,0 +1,43 @@
+{
+    "a": "$ipv4",
+    "aaaa": "$ipv6",
+    "purgeUnknownRecords": false,
+    "cloudflare": [
+        {
+            "authentication": {
+                "api_token": "$api_token",
+                "api_key": {
+                    "api_key": "$api_key",
+                    "account_email": "$account_email"
+                }
+            },
+            "zone_id": "$zone_id",
+            "subdomains": [
+                "adguardhome",
+                "adguardhome-installer",
+                "aliyundrive-webdav",
+                "aria2-rpc",
+                "filebrowser",
+                "freshrss",
+                "portainer",
+                "vaultwarden",
+                "webdav"
+            ],
+            "proxied": true
+        },
+        {
+            "authentication": {
+                "api_token": "$api_token",
+                "api_key": {
+                    "api_key": "$api_key",
+                    "account_email": "$account_email"
+                }
+            },
+            "zone_id": "$zone_id",
+            "subdomains": [
+                "ssh"
+            ],
+            "proxied": false
+        }
+    ]
+}
