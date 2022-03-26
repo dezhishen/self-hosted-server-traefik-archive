@@ -34,7 +34,7 @@ rule='Host(`webdav.'$domain'`)'
 docker run --name webdav \
 --restart=always -d \
 -m 128M --memory-swap=256M \
--p 80:80 -v $base_data_dir/public:/media \
+-v $base_data_dir/public:/media \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
 -e UID=`id -u` \
@@ -47,4 +47,4 @@ docker run --name webdav \
 --label "traefik.http.routers.webdav.tls.domains[0].main=webdav.$domain" \
 --label "traefik.http.services.webdav.loadbalancer.server.port=80" \
 --label "traefik.enable=true" \
- sashgorokhov/webdav
+dezhishen/docker-nginx-webdav
