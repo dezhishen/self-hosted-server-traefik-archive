@@ -40,7 +40,7 @@ fi
 rule='Host(`aliyundrive-webdav.'$domain'`)'
 echo "启动aliyundrive-webdav容器"
 docker run --name=aliyundrive-webdav \
---restart=always -m 128M \
+--restart=always -m 128M -d \
 --network=$docker_network_name \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
