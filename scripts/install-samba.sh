@@ -31,6 +31,7 @@ echo "即将启动samba"
 
 docker run -d --restart=always --name=samba \
 --network=$docker_network_name \
+-m 128M --memory-swap=256M \
 -p 139:139 -p 445:445 \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
