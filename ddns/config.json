@@ -14,7 +14,6 @@
             "zone_id": "$zone_id",
             "subdomains": [
                 "adguardhome",
-                "adguardhome-installer",
                 "aliyundrive-webdav",
                 "aria2-rpc",
                 "filebrowser",
