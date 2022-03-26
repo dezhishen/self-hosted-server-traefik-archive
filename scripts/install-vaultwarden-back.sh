@@ -26,7 +26,6 @@ esac
 
 echo "设置备份服务配置..."
 
-MY_BACKUP_RCLONE_REMOTE=$(`$dirname $0`/get-args.sh MY_BACKUP_RCLONE_REMOTE 远程名称)
 
 if [ -z "$MY_BACKUP_RCLONE_REMOTE" ]; then
     read -p "rclone远程名称: " MY_BACKUP_RCLONE_REMOTE
@@ -38,7 +37,6 @@ if [ -z "$MY_BACKUP_RCLONE_REMOTE" ]; then
 fi
 
 
-BACKUP_ZIP_PASSWORD=$(`dirname $0`/get-args.sh BACKUP_ZIP_PASSWORD 压缩密码)
 if [ -z "$BACKUP_ZIP_PASSWORD" ]; then
     read -p "请输入备份压缩文件的密码,可为空:" BACKUP_ZIP_PASSWORD
     if [ -z "$BACKUP_ZIP_PASSWORD" ]; then
