@@ -11,22 +11,18 @@ docker_network_name=$3
 
 echo "当前rclone配置如下: "
 docker run --rm -it -v $base_data_dir/vaultwarden-backup/config:/config ttionya/vaultwarden-backup:latest rclone config show
-read -p "是否需要修改配置文件？(y/n)" resetConfig
 
-case $resetConfig in
+echo ""
+
+read -p "是否需要修改配置文件？(y/n)" yn
+case $yn in
     [Yy]* )
         docker run --rm -it \
         -v $base_data_dir/vaultwarden-backup/config:/config \
         ttionya/vaultwarden-backup:latest \
         rclone config
         ;;
-    * )
-        echo "不修改配置文件"
-        ;;
 esac
-echo "当前rclone配置如下: "
-
-docker run --rm -it -v $base_data_dir/vaultwarden-backup/config:/config ttionya/vaultwarden-backup:latest rclone config show
 
 echo "设置备份服务配置..."
 
