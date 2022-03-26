@@ -33,6 +33,7 @@ echo "webdav密码: $WEBDAV_AUTH_PASSWORD"
 rule='Host(`webdav.'$domain'`)'
 docker run --name webdav \
 --restart=always -d \
+--network=$docker_network_name \
 -m 128M --memory-swap=256M \
 -v $base_data_dir/public:/media \
 -e TZ="Asia/Shanghai" \
