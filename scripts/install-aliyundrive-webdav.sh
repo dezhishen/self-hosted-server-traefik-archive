@@ -26,7 +26,7 @@ if [ -z "$ALIYUNDRIVE_WEBDAV_AUTH_USERNAME" ]; then
     `dirname $0`/set-args.sh ALIYUNDRIVE_WEBDAV_AUTH_USERNAME $ALIYUNDRIVE_WEBDAV_AUTH_USERNAME
 fi
 
-ALIYUNDRIVE_WEBDAV_PASSWORD=$(`dirname $0`/get-args.sh ALIYUNDRIVE_WEBDAV_PASSWORD aliyundrive-webdav的密码_
+ALIYUNDRIVE_WEBDAV_PASSWORD=$(`dirname $0`/get-args.sh ALIYUNDRIVE_WEBDAV_PASSWORD aliyundrive-webdav的密码)
 if [ -z "$ALIYUNDRIVE_WEBDAV_PASSWORD" ]; then
     read -p "请输入aliyundrive-webdav的密码: " ALIYUNDRIVE_WEBDAV_PASSWORD
     if [ -z "$ALIYUNDRIVE_WEBDAV_PASSWORD" ]; then
