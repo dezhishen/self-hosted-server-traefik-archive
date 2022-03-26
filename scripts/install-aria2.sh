@@ -10,7 +10,7 @@ docker_network_name=$3
 `dirname $0`/create-dir.sh $base_data_dir/public/downloads
 
 
-`dirname $0`/get-args.sh ARIA2_RPC_SECRET aria2远程密钥
+ARIA2_RPC_SECRET=$(`dirname $0`/get-args.sh ARIA2_RPC_SECRET aria2远程密钥)
 if [ -z "$ARIA2_RPC_SECRET" ]; then
     read -p "请输入aria2远程密钥: " ARIA2_RPC_SECRET
     if [ -z "$ARIA2_RPC_SECRET" ]; then

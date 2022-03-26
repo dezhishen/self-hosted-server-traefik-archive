@@ -1,11 +1,11 @@
 #! /bin/bash
 set -e
 echo "开始更新本项目"
-git pull
+#git pull || true
 
 domain=`./scripts/get-args.sh domain "主域名(如 baidu.com或者app.baidu.com)"`
 if [ -z "$domain" ]; then
-    read -p "请输入主域名(如 baidu.com或者app.baidu.com)：" domain
+    read -p "请输入主域名(如 baidu.com或者app.baidu.com):" domain
     if [ -z "$domain" ]; then
         echo "主域名不能为空"
         exit 0
@@ -15,25 +15,31 @@ if [ -z "$domain" ]; then
 fi
 base_data_dir=`./scripts/get-args.sh base_data_dir "数据目录(如 /docker_data)"`
 if [ -z "$base_data_dir" ]; then
-    echo "数据目录为空,使用默认值 /docker_data"
-    base_data_dir=/docker_data
-    `./scripts/set-args.sh base_data_dir "$base_data_dir"`
-    exit 0
+    read -p "请输入数据目录(如 /docker_data):" base_data_dir
+    if [ -z "$base_data_dir" ]; then
+        echo "数据目录为空,使用默认值 /docker_data"
+        base_data_dir=/docker_data
+    fi
+    ./scripts/set-args.sh base_data_dir $base_data_dir
 fi
 
 docker_network_name=`./scripts/get-args.sh docker_network_name "Docker网络名称(如 ingress)"`
 
 if [ -z "$docker_network_name" ]; then
-    echo "Docker网络名称为空,使用默认值 ingress"
-    `./scripts/set-args.sh docker_network_name ingress`
+    read -p "请输入Docker网络名称(如 ingress):" docker_network_name
+    if [ -z "$docker_network_name" ]; then
+        echo "Docker网络名称为空,使用默认值 ingress"
+        docker_network_name=ingress
+    fi
     docker_network_name=ingress
+    ./scripts/set-args.sh docker_network_name ingress
 fi
 
 echo "开始创建根目录"
 
 if [ ! -d $base_data_dir ]; then
     mkdir -p $base_data_dir
-    printf "$CREATE_BASE_DATA_DIR_SUCCESS_LANG" "$base_data_dir"
+    printf "创建成功%s" "$base_data_dir"
 else
     read -p "文件目录已存在,是否备份 [y/n]:" yn
     case $yn in

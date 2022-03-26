@@ -1,6 +1,6 @@
 {
-    "a": "$ipv4",
-    "aaaa": "$ipv6",
+    "a": $ipv4,
+    "aaaa": $ipv6,
     "purgeUnknownRecords": false,
     "cloudflare": [
         {

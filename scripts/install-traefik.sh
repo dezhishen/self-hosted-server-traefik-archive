@@ -3,7 +3,7 @@ domain=$1
 base_data_dir=$2
 docker_network_name=$3
 
-acme_email= `dirname $0`/get-args.sh acme_email acme的email
+acme_email=$(`dirname $0`/get-args.sh acme_email acme的email)
 if [ -z "$acme_email" ]; then
     read -p "请输入acme的email: " acme_email
     if [ -z "$acme_email" ]; then

@@ -3,23 +3,21 @@ domain=$1
 base_data_dir=$2
 docker_network_name=$3
 
-SAMBA_USER_NAME=$(`dirname $0`/get-args.sh SAMBA_USER_NAME "smb's userName" )
+SAMBA_USER_NAME=$(`dirname $0`/get-args.sh SAMBA_USER_NAME "smb's userName")
 if [ ! -n "$SAMBA_USER_NAME" ]; then
     ## input your SAMBA_USER_NAME,or defaut is amdin
-    printf "$INPUT_WIRH_DEFAULT_LANG" "smb's userName" "admin"
-    read SAMBA_USER_NAME
+    read -p "请输入用户名默认,admin" SAMBA_USER_NAME
     if [ ! -n "$SAMBA_USER_NAME" ]; then
         SAMBA_USER_NAME="amdin"
     fi
     `dirname $0`/set-args.sh SAMBA_USER_NAME $SAMBA_USER_NAME
 fi
 
-echo "user name：$SAMBA_USER_NAME"
-SAMBA_USER_PASSWORD=$(`dirname $0`/read-args.sh SAMBA_USER_PASSWORD "smb's userPassword" )
+echo "user name:$SAMBA_USER_NAME"
+SAMBA_USER_PASSWORD=$(`dirname $0`/get-args.sh SAMBA_USER_PASSWORD "smb's userPassword" )
 if [ ! -n "$SAMBA_USER_PASSWORD" ]; then
     ## input your SAMBA_USER_PASSWORD,or random
-    printf "$INPUT_OR_RAND_LANG" "smb's userPassword"
-    read SAMBA_USER_PASSWORD
+    read -p "请输入密码，为空则自动生成" SAMBA_USER_PASSWORD
     if [ ! -n "$SAMBA_USER_PASSWORD" ]; then
         SAMBA_USER_PASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
     fi
@@ -27,7 +25,7 @@ if [ ! -n "$SAMBA_USER_PASSWORD" ]; then
 fi
 echo "password: $SAMBA_USER_PASSWORD"
 
-`dirname $0`/container-stop.sh samba
+`dirname $0`/stop-container.sh samba
 
 echo "即将启动samba"
 

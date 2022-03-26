@@ -35,8 +35,6 @@ docker run -d --restart=always \
 --label "traefik.http.services.adguardhome-installer.loadbalancer.server.port=3000" \
 --label "traefik.enable=true" \
 adguard/adguardhome
-printf "START_SUCCESS_LANG" "adguardhome"
-echo ""
-printf "$PLEASE_VISIT_ADDRESS_LANG $INIT_CONFIG_LANG" "$http_scheme://adguardhome-init.$domain"
-echo ""
-printf "$PLEASE_VISIT_ADDRESS_LANG" "$http_scheme://adguardhome.$domain"
+printf "启动成功"
+printf "请访问 https://adguardhome-installer.$domain 初始化安装"
+printf "随后请访问 https://adguardhome.$domain 开始使用"
