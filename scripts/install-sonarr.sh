@@ -44,7 +44,7 @@ docker run -d --name=sonarr \
 --label "traefik.http.routers.sonarr.tls.domains[0].main=sonarr.$domain" \
 --label "traefik.http.services.sonarr.loadbalancer.server.port=8989" \
 --label "traefik.enable=true" \
-lscr.io/linuxserver/sonarr:$arch
+lscr.io/linuxserver/sonarr:$arch-latest
 
 echo "启动sonarr容器"
 echo "访问 https://sonarr.$domain "

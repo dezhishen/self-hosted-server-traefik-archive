@@ -48,7 +48,7 @@ docker run -d --name=qbittorrent \
 --label "traefik.http.routers.qbittorrent.tls.domains[0].main=qbittorrent.$domain" \
 --label "traefik.http.services.qbittorrent.loadbalancer.server.port=8080" \
 --label "traefik.enable=true" \
-lscr.io/linuxserver/qbittorrent:$arch
+lscr.io/linuxserver/qbittorrent:$arch-latest
 echo "启动qbittorrent容器"
 echo "访问 https://qbittorrent.$domain "
 echo "默认用户名: admin 密码: adminadmin"
