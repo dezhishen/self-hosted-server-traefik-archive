@@ -116,6 +116,14 @@ case $yn in
         ;;
 esac
 
+read -p "是否需要安装/重装 fastgithub? [y/n]:" yn
+
+case $yn in
+    [Yy]* )
+        sh ./scripts/install-fastgithub.sh $domain $base_data_dir $docker_network_name
+        ;;
+esac
+
 read -p "是否需要安装/重装 filebrowser部署filebrowser? [y/n]:" yn
 case $yn in
     [Yy]* )
