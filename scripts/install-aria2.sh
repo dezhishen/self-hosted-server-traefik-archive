@@ -24,7 +24,7 @@ echo "aria2远程密钥: $ARIA2_RPC_SECRET"
 rule='Host(`aria2-rpc.'$domain'`)'
 echo "即将启动aria2"
 docker run -d   --name aria2   --restart unless-stopped   --log-opt max-size=1m \
---network=$docker_network_name \
+--network=$docker_network_name --network-alias=aria2 \
 -e PUID=`id -u` -e PGID=`id -g` \
 -e UMASK_SET=022 \
 -e RPC_SECRET=$ARIA2_RPC_SECRET \

@@ -17,7 +17,7 @@ docker run -d --name vaultwarden \
 -m 50M \
 -e LANG="zh_CN.UTF-8" \
 -u $(id -u):$(id -g) \
---network=$docker_network_name \
+--network=$docker_network_name --network-alias=vaultwarden \
 -v $base_data_dir/vaultwarden/data:/data/  \
 --label "traefik.http.routers.vaultwarden.rule=$rule" \
 --label "traefik.http.routers.vaultwarden.tls=true" \

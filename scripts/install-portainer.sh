@@ -18,7 +18,7 @@ docker run -d --restart=always \
 -m 50M \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -v $base_data_dir/portainer/data:/data \
---network=$docker_network_name  \
+--network=$docker_network_name --network-alias=portainer  \
 --label "traefik.http.routers.portainer.rule=$rule" \
 --label "traefik.http.routers.portainer.tls=true" \
 --label "traefik.http.routers.portainer.tls.certresolver=traefik" \

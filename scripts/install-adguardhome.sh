@@ -15,11 +15,11 @@ if [ ! -f "$base_data_dir/adguardhome/conf/AdGuardHome.yaml" ]; then
     docker run -d --restart=always \
         --name=adguardhome \
         -m 50M \
-        -p 53:53 \
-        -p 53:53/udp \
+        --network=$docker_network_name \
+        --network-alias=adguardhome \
+        -p 53:53 -p 53:53/udp \
         -e TZ="Asia/Shanghai" \
         -e LANG="zh_CN.UTF-8" \
-        --network=$docker_network_name \
         -v $base_data_dir/adguardhome/work:/opt/adguardhome/work \
         -v $base_data_dir/adguardhome/conf:/opt/adguardhome/conf \
         --label "traefik.http.routers.adguardhome.rule=$rule" \
@@ -37,11 +37,11 @@ else
     docker run -d --restart=always \
         --name=adguardhome \
         -m 50M \
-        -p 53:53 \
-        -p 53:53/udp \
+        --network=$docker_network_name \
+        --network-alias=adguardhome \
+        -p 53:53 -p 53:53/udp \
         -e TZ="Asia/Shanghai" \
         -e LANG="zh_CN.UTF-8" \
-        --network=$docker_network_name \
         -v $base_data_dir/adguardhome/work:/opt/adguardhome/work \
         -v $base_data_dir/adguardhome/conf:/opt/adguardhome/conf \
         --label "traefik.http.routers.adguardhome.rule=$rule" \

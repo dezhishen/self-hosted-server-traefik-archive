@@ -13,6 +13,7 @@ docker run -d --name=qbittorrent \
 --restart=always \
 -m 50M --memory-swap=100M \
 --network=$docker_network_name \
+--network-alias=qbittorrent \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
 -e AUTH=$CLOUD_T_AUTH_USER:$CLOUD_T_AUTH_PASSWORD \

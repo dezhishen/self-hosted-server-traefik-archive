@@ -20,7 +20,7 @@ fi
 rule='Host(`filebrowser.'$domain'`)'
 docker run -d --restart=always --name=filebrowser \
 -m 128M \
---network=$docker_network_name \
+--network=$docker_network_name --network-alias=filebrowser \
 -u $(id -u):$(id -g) \
 -v $base_data_dir:/srv \
 -v "$base_data_dir/filebrowser/filebrowser.db:/database.db" \

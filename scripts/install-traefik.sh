@@ -24,7 +24,7 @@ docker run --name=traefik \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
 -p 80:80 -p 443:443 \
---network=$docker_network_name \
+--network=$docker_network_name --network-alias=traefik \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -v $base_data_dir/traefik/acme:/acme traefik \
 --providers.docker=true \
