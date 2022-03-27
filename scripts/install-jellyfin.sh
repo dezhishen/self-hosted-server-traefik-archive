@@ -35,7 +35,7 @@ docker run -d \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
 -e PUID=`id -u` -e PGID=`id -g` \
--v $base_data_dir/ombi/config:/config \
+-v $base_data_dir/jellyfin/config:/config \
 -v $base_data_dir/public/:/data \
 --label 'traefik.http.routers.jellyfin.rule=Host(`jellyfin'.$domain'`)' \
 --label "traefik.http.routers.jellyfin.tls=true" \

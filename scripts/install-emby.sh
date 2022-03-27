@@ -35,7 +35,7 @@ docker run -d \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
 -e PUID=`id -u` -e PGID=`id -g` \
--v $base_data_dir/ombi/config:/config \
+-v $base_data_dir/emby/config:/config \
 -v $base_data_dir/public/:/data \
 --label 'traefik.http.routers.emby.rule=Host(`emby'.$domain'`)' \
 --label "traefik.http.routers.emby.tls=true" \
