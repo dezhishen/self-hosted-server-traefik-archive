@@ -3,8 +3,8 @@ domain=$1
 base_data_dir=$2
 docker_network_name=$3
 
-`dirname $0`/create-data-dir.sh $base_data_dir/qbittorrent
-`dirname $0`/create-data-dir.sh $base_data_dir/qbittorrent/config
+`dirname $0`/create-dir.sh $base_data_dir/qbittorrent
+`dirname $0`/create-dir.sh $base_data_dir/qbittorrent/config
 rule='Host(`qbittorrent.'$domain'`)'
 
 `dirname $0`/stop-container.sh qbittorrent
