@@ -84,7 +84,7 @@ echo "开始部署ddns服务"
 echo "即将部署traefik"
 ./scripts/install-traefik.sh $domain $base_data_dir $docker_network_name
 
-read -p "是否需要部署adguardhome? [y/n]:" yn
+read -p "是否需要部署 adguardhome? [y/n]:" yn
 case $yn in
     [Yy]* )
         ./scripts/install-adguardhome.sh $domain $base_data_dir $docker_network_name
@@ -98,36 +98,49 @@ case $yn in
         ;;
 esac
 
-read -p "是否需要部署aria2? [y/n]:" yn
+read -p "是否需要部署 aria2? [y/n]:" yn
 case $yn in
     [Yy]* )
         ./scripts/install-aria2.sh $domain $base_data_dir $docker_network_name
         ;;
 esac
+read -p "是否需要部署 emby? [y/n]:" yn
 
-read -p "是否需要部署filebrowser部署filebrowser? [y/n]:" yn
+case $yn in
+    [Yy]* )
+        ./scripts/install-emby.sh $domain $base_data_dir $docker_network_name
+        ;;
+esac
+
+read -p "是否需要部署 filebrowser部署filebrowser? [y/n]:" yn
 case $yn in
     [Yy]* )
         ./scripts/install-filebrowser.sh $domain $base_data_dir $docker_network_name
         ;;
 esac
 
-read -p "是否需要部署freshrss [y/n]:" yn
+read -p "是否需要部署 freshrss [y/n]:" yn
 case $yn in
     [Yy]* )
         ./scripts/install-freshrss.sh $domain $base_data_dir $docker_network_name
         ;;
 esac
 
-
-read -p "是否需要部署samba? [y/n]:" yn
+read -p "是否需要部署 jellyfin? [y/n]:" yn
 case $yn in
     [Yy]* )
-        ./scripts/install-samba.sh $domain $base_data_dir $docker_network_name
+        ./scripts/install-jellyfin.sh $domain $base_data_dir $docker_network_name
         ;;
 esac
 
-read -p "是否需要部署portainer? [y/n]:" yn
+read -p "是否需要部署 ombi? [y/n]:" yn
+case $yn in
+    [Yy]* )
+        ./scripts/install-ombi.sh $domain $base_data_dir $docker_network_name
+        ;;
+esac
+
+read -p "是否需要部署 portainer? [y/n]:" yn
 case $yn in
     [Yy]* )
         ./scripts/install-portainer.sh $domain $base_data_dir $docker_network_name
@@ -142,6 +155,14 @@ case $yn in
         ;;
 esac
 
+read -p "是否需要部署 samba? [y/n]:" yn
+case $yn in
+    [Yy]* )
+        ./scripts/install-samba.sh $domain $base_data_dir $docker_network_name
+        ;;
+esac
+
+
 read -p "是否需要部署 sonarr ? [y/n]:" yn
 case $yn in
     [Yy]* )
@@ -149,7 +170,7 @@ case $yn in
         ;;
 esac
 
-read -p "是否需要部署vaultwarden [y/n]:" yn
+read -p "是否需要部署 vaultwarden [y/n]:" yn
 case $yn in
     [Yy]* )
         ./scripts/install-vaultwarden.sh $domain $base_data_dir $docker_network_name
