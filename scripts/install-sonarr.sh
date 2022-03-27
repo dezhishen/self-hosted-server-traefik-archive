@@ -29,7 +29,7 @@ esac
 
 docker run -d --name=sonarr \
 --restart=always \
--m 50M --memory-swap=100M \
+-m 128M --memory-swap=256M \
 --network=$docker_network_name \
 --network-alias=sonarr \
 -e TZ="Asia/Shanghai" \
