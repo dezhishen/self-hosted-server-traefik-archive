@@ -48,4 +48,3 @@ lscr.io/linuxserver/ombi:$arch-latest
 
 echo "启动ombi容器"
 echo "访问 https://ombi.$domain "
-echo "默认用户名: admin 密码: adminadmin"

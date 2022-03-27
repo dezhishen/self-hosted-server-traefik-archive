@@ -48,4 +48,3 @@ lscr.io/linuxserver/sonarr:$arch-latest
 
 echo "启动sonarr容器"
 echo "访问 https://sonarr.$domain "
-echo "默认用户名: admin 密码: adminadmin"
