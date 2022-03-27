@@ -42,7 +42,7 @@ docker run -d --name=lidarr \
 --label "traefik.http.routers.lidarr.tls=true" \
 --label "traefik.http.routers.lidarr.tls.certresolver=traefik" \
 --label "traefik.http.routers.lidarr.tls.domains[0].main=lidarr.$domain" \
---label "traefik.http.services.lidarr.loadbalancer.server.port=7878" \
+--label "traefik.http.services.lidarr.loadbalancer.server.port=8686" \
 --label "traefik.enable=true" \
 lscr.io/linuxserver/lidarr:$arch-latest
 
