@@ -4,7 +4,6 @@ base_data_dir=$2
 docker_network_name=$3
 
 
-`dirname $0`/stop-container.sh sonarr
 
 echo "请选择服务架构: "
 echo "1. x86-64	"
@@ -27,6 +26,7 @@ case $num in
         ;;
 esac
 
+`dirname $0`/stop-container.sh sonarr
 docker run -d --name=sonarr \
 --restart=always \
 -m 128M --memory-swap=256M \
