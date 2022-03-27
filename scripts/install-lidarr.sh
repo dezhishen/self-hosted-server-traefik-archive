@@ -26,25 +26,25 @@ case $num in
         ;;
 esac
 
-`dirname $0`/stop-container.sh ladarr
-docker run -d --name=ladarr \
+`dirname $0`/stop-container.sh lidarr
+docker run -d --name=lidarr \
 --restart=always \
 -m 128M --memory-swap=256M \
 --network=$docker_network_name \
---network-alias=ladarr \
+--network-alias=lidarr \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
 -e PUID=`id -u` -e PGID=`id -g` \
--v $base_data_dir/ladarr/config:/config \
+-v $base_data_dir/lidarr/config:/config \
 -v $base_data_dir/public/downloads:/downloads \
 -v $base_data_dir/public/:/data \
---label 'traefik.http.routers.ladarr.rule=Host(`ladarr'.$domain'`)' \
---label "traefik.http.routers.ladarr.tls=true" \
---label "traefik.http.routers.ladarr.tls.certresolver=traefik" \
---label "traefik.http.routers.ladarr.tls.domains[0].main=ladarr.$domain" \
---label "traefik.http.services.ladarr.loadbalancer.server.port=7878" \
+--label 'traefik.http.routers.lidarr.rule=Host(`lidarr'.$domain'`)' \
+--label "traefik.http.routers.lidarr.tls=true" \
+--label "traefik.http.routers.lidarr.tls.certresolver=traefik" \
+--label "traefik.http.routers.lidarr.tls.domains[0].main=lidarr.$domain" \
+--label "traefik.http.services.lidarr.loadbalancer.server.port=7878" \
 --label "traefik.enable=true" \
-lscr.io/linuxserver/ladarr:$arch-latest
+lscr.io/linuxserver/lidarr:$arch-latest
 
-echo "启动ladarr容器"
-echo "访问 https://ladarr.$domain "
+echo "启动lidarr容器"
+echo "访问 https://lidarr.$domain "
