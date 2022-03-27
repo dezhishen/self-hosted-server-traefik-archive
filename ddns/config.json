@@ -16,10 +16,12 @@
                 "adguardhome",
                 "aliyundrive-webdav",
                 "aria2-rpc",
+                "emby",
                 "filebrowser",
                 "freshrss",
-                "qbittorrent",
+                "ombi",
                 "portainer",
+                "qbittorrent",
                 "sonarr",
                 "vaultwarden",
                 "webdav"
