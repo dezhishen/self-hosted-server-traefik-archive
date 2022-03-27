@@ -8,7 +8,7 @@ docker_network_name=$3
 `dirname $0`/create-dir.sh $base_data_dir/adguardhome/conf
 
 
-rule='Host(`adguardhome.'$domain'`)'
+# rule=Host(`adguardhome.'$domain'`)'
 `dirname $0`/stop-container.sh adguardhome
 # 是否为第一次安装
 if [ ! -f "$base_data_dir/adguardhome/conf/AdGuardHome.yaml" ]; then
@@ -22,9 +22,8 @@ if [ ! -f "$base_data_dir/adguardhome/conf/AdGuardHome.yaml" ]; then
         -e LANG="zh_CN.UTF-8" \
         -v $base_data_dir/adguardhome/work:/opt/adguardhome/work \
         -v $base_data_dir/adguardhome/conf:/opt/adguardhome/conf \
-        --label "traefik.http.routers.adguardhome.rule=$rule" \
+        --label 'traefik.http.routers.adguardhome.rule=Host(`adguardhome.'$domain'`)' \
         --label "traefik.http.routers.adguardhome.tls=true" \
-        --label "traefik.http.routers.adguardhome.service=adguardhome-installer" \
         --label "traefik.http.routers.adguardhome.tls.certresolver=traefik" \
         --label "traefik.http.routers.adguardhome.tls.domains[0].main=adguardhome.$domain" \
         --label "traefik.http.services.adguardhome.loadbalancer.server.port=3000" \
@@ -44,9 +43,8 @@ else
         -e LANG="zh_CN.UTF-8" \
         -v $base_data_dir/adguardhome/work:/opt/adguardhome/work \
         -v $base_data_dir/adguardhome/conf:/opt/adguardhome/conf \
-        --label "traefik.http.routers.adguardhome.rule=$rule" \
+        --label 'traefik.http.routers.adguardhome.rule=Host(`adguardhome.'$domain'`)' \
         --label "traefik.http.routers.adguardhome.tls=true" \
-        --label "traefik.http.routers.adguardhome.service=adguardhome" \
         --label "traefik.http.routers.adguardhome.tls.certresolver=traefik" \
         --label "traefik.http.routers.adguardhome.tls.domains[0].main=adguardhome.$domain" \
         --label "traefik.http.services.adguardhome.loadbalancer.server.port=$bind_port" \

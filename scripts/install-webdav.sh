@@ -30,7 +30,7 @@ echo "webdav密码: $WEBDAV_AUTH_PASSWORD"
 
 `dirname $0`/stop-container.sh webdav
 
-rule='Host(`webdav.'$domain'`)'
+rule=Host(`webdav.'$domain'`)'
 docker run --name webdav \
 --restart=always -d \
 --network=$docker_network_name --network-alias=webdav \

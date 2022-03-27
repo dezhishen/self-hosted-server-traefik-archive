@@ -134,6 +134,21 @@ case $yn in
         ;;
 esac
 
+
+read -p "是否需要部署 qbittorrent ? [y/n]:" yn
+case $yn in
+    [Yy]* )
+        ./scripts/install-qbittorrent.sh $domain $base_data_dir $docker_network_name
+        ;;
+esac
+
+read -p "是否需要部署 sonarr ? [y/n]:" yn
+case $yn in
+    [Yy]* )
+        ./scripts/install-sonarr.sh $domain $base_data_dir $docker_network_name
+        ;;
+esac
+
 read -p "是否需要部署vaultwarden [y/n]:" yn
 case $yn in
     [Yy]* )
@@ -145,13 +160,5 @@ read -p "是否需要部署 webdav? [y/n]:" yn
 case $yn in
     [Yy]* )
         ./scripts/install-webdav.sh $domain $base_data_dir $docker_network_name
-        ;;
-esac
-
-
-read -p "是否需要部署 qbittorrent ? [y/n]:" yn
-case $yn in
-    [Yy]* )
-        ./scripts/install-qbittorrent.sh $domain $base_data_dir $docker_network_name
         ;;
 esac

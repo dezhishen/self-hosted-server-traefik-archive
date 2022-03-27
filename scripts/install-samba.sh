@@ -41,7 +41,7 @@ docker run -d --restart=always --name=samba \
 -e GROUPID=$(id -g) \
 dperson/samba \
 -s "shared;/mount/;yes;no;no;all;none;" \
--u "$SAMBA_USER_NAME;$SAMBA_USER_PASSWORD" \
+-u "$SAMBA_USER_NAME;$SAMBA_USER_PASSWORD"
 
 echo "samba启动完成"
 echo "请调整防火墙规则，允许内网访问 139/445 端口"

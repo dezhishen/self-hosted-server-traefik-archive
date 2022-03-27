@@ -18,10 +18,11 @@
                 "aria2-rpc",
                 "filebrowser",
                 "freshrss",
+                "qbittorrent",
                 "portainer",
+                "sonarr",
                 "vaultwarden",
-                "webdav",
-                "qbittorrent"
+                "webdav"
             ],
             "proxied": true
         },
