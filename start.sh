@@ -79,107 +79,119 @@ else
 fi
 
 echo "开始部署ddns服务"
-./scripts/install-ddns.sh $domain $base_data_dir $docker_network_name
+sh ./scripts/install-ddns.sh $domain $base_data_dir $docker_network_name
 
-echo "即将部署traefik"
-./scripts/install-traefik.sh $domain $base_data_dir $docker_network_name
+read -p "是否需要安装(重装) traefik [y/n]: " yn
 
-read -p "是否需要部署 adguardhome? [y/n]:" yn
+case $yn in
+    y|Y|yes|YES|Yes)
+    sh ./scripts/install-traefik.sh $domain $base_data_dir $docker_network_name
+esac
+
+read -p "是否需要安装/重装 adguardhome? [y/n]:" yn
 case $yn in
     [Yy]* )
-        ./scripts/install-adguardhome.sh $domain $base_data_dir $docker_network_name
+        sh ./scripts/install-adguardhome.sh $domain $base_data_dir $docker_network_name
+    ;;
+esac
+
+read -p "是否需要安装/重装 aliyundrive-webdav? [y/n]:" yn
+case $yn in
+    [Yy]* )
+        sh ./scripts/install-aliyundrive-webdav.sh $domain $base_data_dir $docker_network_name
+    ;;
+esac
+
+read -p "是否需要安装/重装 aria2? [y/n]:" yn
+case $yn in
+    [Yy]* )
+        sh ./scripts/install-aria2.sh $domain $base_data_dir $docker_network_name
+        ;;
+esac
+read -p "是否需要安装/重装 emby? [y/n]:" yn
+
+case $yn in
+    [Yy]* )
+        sh ./scripts/install-emby.sh $domain $base_data_dir $docker_network_name
         ;;
 esac
 
-read -p "是否需要部署 aliyundrive-webdav? [y/n]:" yn
+read -p "是否需要安装/重装 filebrowser部署filebrowser? [y/n]:" yn
 case $yn in
     [Yy]* )
-        ./scripts/install-aliyundrive-webdav.sh $domain $base_data_dir $docker_network_name
+        sh ./scripts/install-filebrowser.sh $domain $base_data_dir $docker_network_name
         ;;
 esac
 
-read -p "是否需要部署 aria2? [y/n]:" yn
+read -p "是否需要安装/重装 freshrss [y/n]:" yn
 case $yn in
     [Yy]* )
-        ./scripts/install-aria2.sh $domain $base_data_dir $docker_network_name
-        ;;
-esac
-read -p "是否需要部署 emby? [y/n]:" yn
-
-case $yn in
-    [Yy]* )
-        ./scripts/install-emby.sh $domain $base_data_dir $docker_network_name
+        sh ./scripts/install-freshrss.sh $domain $base_data_dir $docker_network_name
         ;;
 esac
 
-read -p "是否需要部署 filebrowser部署filebrowser? [y/n]:" yn
+read -p "是否需要安装/重装 jellyfin? [y/n]:" yn
 case $yn in
     [Yy]* )
-        ./scripts/install-filebrowser.sh $domain $base_data_dir $docker_network_name
+        sh ./scripts/install-jellyfin.sh $domain $base_data_dir $docker_network_name
         ;;
 esac
 
-read -p "是否需要部署 freshrss [y/n]:" yn
+read -p "是否需要安装/重装 ombi? [y/n]:" yn
 case $yn in
     [Yy]* )
-        ./scripts/install-freshrss.sh $domain $base_data_dir $docker_network_name
+        sh ./scripts/install-ombi.sh $domain $base_data_dir $docker_network_name
         ;;
 esac
 
-read -p "是否需要部署 jellyfin? [y/n]:" yn
+read -p "是否需要安装/重装 portainer? [y/n]:" yn
 case $yn in
     [Yy]* )
-        ./scripts/install-jellyfin.sh $domain $base_data_dir $docker_network_name
-        ;;
-esac
-
-read -p "是否需要部署 ombi? [y/n]:" yn
-case $yn in
-    [Yy]* )
-        ./scripts/install-ombi.sh $domain $base_data_dir $docker_network_name
-        ;;
-esac
-
-read -p "是否需要部署 portainer? [y/n]:" yn
-case $yn in
-    [Yy]* )
-        ./scripts/install-portainer.sh $domain $base_data_dir $docker_network_name
-        ;;
-esac
-
-
-read -p "是否需要部署 qbittorrent ? [y/n]:" yn
-case $yn in
-    [Yy]* )
-        ./scripts/install-qbittorrent.sh $domain $base_data_dir $docker_network_name
-        ;;
-esac
-
-read -p "是否需要部署 samba? [y/n]:" yn
-case $yn in
-    [Yy]* )
-        ./scripts/install-samba.sh $domain $base_data_dir $docker_network_name
+        sh ./scripts/install-portainer.sh $domain $base_data_dir $docker_network_name
         ;;
 esac
 
 
-read -p "是否需要部署 sonarr ? [y/n]:" yn
+read -p "是否需要安装/重装 qbittorrent ? [y/n]:" yn
 case $yn in
     [Yy]* )
-        ./scripts/install-sonarr.sh $domain $base_data_dir $docker_network_name
+        sh ./scripts/install-qbittorrent.sh $domain $base_data_dir $docker_network_name
         ;;
 esac
 
-read -p "是否需要部署 vaultwarden [y/n]:" yn
+read -p "是否需要安装/重装 radarr? [y/n]:" yn
 case $yn in
     [Yy]* )
-        ./scripts/install-vaultwarden.sh $domain $base_data_dir $docker_network_name
+        sh ./scripts/install-radarr.sh $domain $base_data_dir $docker_network_name
         ;;
 esac
 
-read -p "是否需要部署 webdav? [y/n]:" yn
+
+read -p "是否需要安装/重装 samba? [y/n]:" yn
 case $yn in
     [Yy]* )
-        ./scripts/install-webdav.sh $domain $base_data_dir $docker_network_name
+        sh ./scripts/install-samba.sh $domain $base_data_dir $docker_network_name
+        ;;
+esac
+
+
+read -p "是否需要安装/重装 sonarr ? [y/n]:" yn
+case $yn in
+    [Yy]* )
+        sh ./scripts/install-sonarr.sh $domain $base_data_dir $docker_network_name
+        ;;
+esac
+
+read -p "是否需要安装/重装 vaultwarden [y/n]:" yn
+case $yn in
+    [Yy]* )
+        sh ./scripts/install-vaultwarden.sh $domain $base_data_dir $docker_network_name
+        ;;
+esac
+
+read -p "是否需要安装/重装 webdav? [y/n]:" yn
+case $yn in
+    [Yy]* )
+        sh ./scripts/install-webdav.sh $domain $base_data_dir $docker_network_name
         ;;
 esac
