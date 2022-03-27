@@ -1,7 +1,18 @@
 #! /bin/bash
 set -e
-echo "开始更新本项目"
-#git pull || true
+read -p "是否需要更新本项目[y/n]: " yn
+case $yn in
+    y|Y|yes|YES|Yes)
+        echo "正在更新本项目"
+        git pull
+        ;;
+    n|N|no|NO|No)
+        echo "本项目不需要更新"
+        ;;
+    *)
+        echo "输入错误，默认为不更新"
+        ;;
+esac
 
 domain=`./scripts/get-args.sh domain "主域名(如 baidu.com或者app.baidu.com)"`
 if [ -z "$domain" ]; then
