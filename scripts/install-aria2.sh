@@ -35,7 +35,7 @@ docker run -d   --name aria2   --restart unless-stopped   --log-opt max-size=1m 
 -m 50M --memory-swap=128M \
 -v $base_data_dir/aria2:/config \
 -v $base_data_dir/public/downloads:/downloads \
--v $base_data_dir/public/:/public \
+-v $base_data_dir/public/:/data \
 --label 'traefik.http.routers.aria2.rule=Host(`aria2-rpc.'$domain'`)' \
 --label "traefik.http.routers.aria2.tls=true" \
 --label "traefik.http.routers.aria2.tls.certresolver=traefik" \

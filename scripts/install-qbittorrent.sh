@@ -38,10 +38,10 @@ docker run -d --name=qbittorrent \
 --network-alias=qbittorrent \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
--e AUTH=$CLOUD_T_AUTH_USER:$CLOUD_T_AUTH_PASSWORD \
 -e PUID=`id -u` -e PGID=`id -g` \
 -v $base_data_dir/qbittorrent/config:/config \
 -v $base_data_dir/public/downloads:/downloads \
+-v $base_data_dir/public/:/data \
 --label 'traefik.http.routers.qbittorrent.rule=Host(`qbittorrent.'$domain'`)' \
 --label "traefik.http.routers.qbittorrent.tls=true" \
 --label "traefik.http.routers.qbittorrent.tls.certresolver=traefik" \
