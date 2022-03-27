@@ -35,7 +35,7 @@ else
     bind_port=`cat $base_data_dir/adguardhome/conf/AdGuardHome.yaml | grep -E '^bind_port:' | awk -F ':' '{print $2}' | sed 's/ //g'`
     docker run -d --restart=always \
         --name=adguardhome \
-        -m 50M \
+        -m 128M --memory-swap=256M \
         --network=$docker_network_name \
         --network-alias=adguardhome \
         -p 53:53 -p 53:53/udp \
