@@ -21,7 +21,7 @@ if [ -z "$ARIA2_RPC_SECRET" ]; then
 fi
 
 echo "aria2远程密钥: $ARIA2_RPC_SECRET"
-rule='Host(`aria2-rpc.'$domain'`)'
+
 echo "即将启动aria2"
 docker run -d   --name aria2   --restart unless-stopped   --log-opt max-size=1m \
 --network=$docker_network_name --network-alias=aria2 \
@@ -36,7 +36,7 @@ docker run -d   --name aria2   --restart unless-stopped   --log-opt max-size=1m 
 -v $base_data_dir/aria2:/config \
 -v $base_data_dir/public/downloads:/downloads \
 -v $base_data_dir/public/:/public \
---label "traefik.http.routers.aria2.rule=$rule" \
+--label 'traefik.http.routers.aria2.rule=Host(`aria2-rpc.'$domain'`)' \
 --label "traefik.http.routers.aria2.tls=true" \
 --label "traefik.http.routers.aria2.tls.certresolver=traefik" \
 --label "traefik.http.routers.aria2.tls.domains[0].main=aria2-rpc.$domain" \

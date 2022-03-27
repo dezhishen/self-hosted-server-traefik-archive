@@ -9,7 +9,6 @@ docker_network_name=$3
 `dirname $0`/stop-container.sh portainer
 echo "即将启动portainer"
 
-rule='Host(`portainer'.$domain'`)'
 
 docker run -d --restart=always \
 --name=portainer \
@@ -19,7 +18,7 @@ docker run -d --restart=always \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -v $base_data_dir/portainer/data:/data \
 --network=$docker_network_name --network-alias=portainer  \
---label "traefik.http.routers.portainer.rule=$rule" \
+--label 'traefik.http.routers.portainer.rule=Host(`portainer'.$domain'`)' \
 --label "traefik.http.routers.portainer.tls=true" \
 --label "traefik.http.routers.portainer.tls.certresolver=traefik" \
 --label "traefik.http.routers.portainer.tls.domains[0].main=portainer.$domain" \
