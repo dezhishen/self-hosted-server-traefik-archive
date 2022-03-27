@@ -136,3 +136,11 @@ case $yn in
         ./scripts/install-webdav.sh $domain $base_data_dir $docker_network_name
         ;;
 esac
+
+
+read -p "是否需要部署 qbittorrent ? [y/n]:" yn
+case $yn in
+    [Yy]* )
+        ./scripts/install-qbittorrent.sh $domain $base_data_dir $docker_network_name
+        ;;
+esac

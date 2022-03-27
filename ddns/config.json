@@ -20,7 +20,8 @@
                 "freshrss",
                 "portainer",
                 "vaultwarden",
-                "webdav"
+                "webdav",
+                "qbittorrent"
             ],
             "proxied": true
         },
