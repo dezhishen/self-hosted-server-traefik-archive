@@ -13,7 +13,8 @@ docker run -d \
 --network-alias=flaresolverr \
 -e LANG="zh_CN.UTF-8" \
 -e TZ="Asia/Shanghai" \
--e LOG_LEVEL=warn \
+-e LOG_LEVEL=debug \
+-e HEADLESS=true \
 -e HOST="$docker_network_subnet" \
 -m 64M --memory-swap=128M \
 flaresolverr/flaresolverr:latest
