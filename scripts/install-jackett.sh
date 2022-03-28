@@ -42,7 +42,7 @@ docker run -d --name=jackett \
 --label "traefik.http.routers.jackett.tls=true" \
 --label "traefik.http.routers.jackett.tls.certresolver=traefik" \
 --label "traefik.http.routers.jackett.tls.domains[0].main=jackett.$domain" \
---label "traefik.http.services.jackett.loadbalancer.server.port=8686" \
+--label "traefik.http.services.jackett.loadbalancer.server.port=9117" \
 --label "traefik.enable=true" \
 lscr.io/linuxserver/jackett:$arch-latest
 
