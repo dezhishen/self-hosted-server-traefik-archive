@@ -44,7 +44,7 @@ docker run -d --name=prowlarr \
 --label "traefik.http.routers.prowlarr.tls.domains[0].main=prowlarr.$domain" \
 --label "traefik.http.services.prowlarr.loadbalancer.server.port=9696" \
 --label "traefik.enable=true" \
-lscr.io/linuxserver/prowlarr:$arch-latest
+lscr.io/linuxserver/prowlarr:$arch-develop
 
 echo "启动prowlarr容器"
 echo "访问 https://prowlarr.$domain "
