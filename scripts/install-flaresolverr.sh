@@ -14,7 +14,8 @@ docker run -d \
 -e LANG="zh_CN.UTF-8" \
 -e TZ="Asia/Shanghai" \
 -e LOG_LEVEL=debug \
+-e TEST_URL="https://www.baidu.com" \
 -e HEADLESS=true \
 -e HOST="$docker_network_subnet" \
 -m 64M --memory-swap=128M \
-flaresolverr/flaresolverr:latest
+flaresolverr/flaresolverr:v2.0.1
