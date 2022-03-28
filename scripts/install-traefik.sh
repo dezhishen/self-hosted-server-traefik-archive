@@ -65,6 +65,7 @@ docker run --name=traefik \
 --label "traefik.enable=true" \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -v $base_data_dir/traefik/acme:/acme traefik \
+--api.dashboard=true \
 --api.insecure=true \
 --providers.docker=true \
 --providers.docker.exposedbydefault=false \
