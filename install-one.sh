@@ -32,4 +32,4 @@ if [ -z "$docker_network_name" ]; then
     ./scripts/set-args.sh docker_network_name $docker_network_name
 fi
 
-sh `dirname $0`/install-$app.sh $domain $base_data_dir $docker_network_name
+sh `dirname $0`/scripts/install-$app.sh $domain $base_data_dir $docker_network_name
