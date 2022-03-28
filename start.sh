@@ -124,7 +124,14 @@ case $yn in
         ;;
 esac
 
-read -p "是否需要安装/重装 filebrowser部署filebrowser? [y/n]:" yn
+read -p "是否需要安装/重装 flaresolverr ? [y/n]:" yn
+case $yn in
+    [Yy]* )
+        sh ./scripts/install-flaresolverr.sh $domain $base_data_dir $docker_network_name
+        ;;
+esac
+
+read -p "是否需要安装/重装 filebrowser ? [y/n]:" yn
 case $yn in
     [Yy]* )
         sh ./scripts/install-filebrowser.sh $domain $base_data_dir $docker_network_name
