@@ -159,6 +159,13 @@ case $yn in
         ;;
 esac
 
+read -p "是否需要安装/重装 nzbget? [y/n]:" yn
+case $yn in
+    [Yy]* )
+        sh ./scripts/install-nzbget.sh $domain $base_data_dir $docker_network_name
+        ;;
+esac
+
 
 
 read -p "是否需要安装/重装 ombi? [y/n]:" yn
