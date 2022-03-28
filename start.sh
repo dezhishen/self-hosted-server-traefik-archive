@@ -138,6 +138,13 @@ case $yn in
         ;;
 esac
 
+read -p "是否需要安装/重装 jackett? [y/n]:" yn
+case $yn in
+    [Yy]* )
+        sh ./scripts/install-jackett.sh $domain $base_data_dir $docker_network_name
+        ;;
+esac
+
 read -p "是否需要安装/重装 jellyfin? [y/n]:" yn
 case $yn in
     [Yy]* )
