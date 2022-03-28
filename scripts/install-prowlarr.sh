@@ -26,25 +26,25 @@ case $num in
         ;;
 esac
 
-`dirname $0`/stop-container.sh jackett
-docker run -d --name=jackett \
+`dirname $0`/stop-container.sh prowlarr
+docker run -d --name=prowlarr \
 --restart=always \
 -m 128M --memory-swap=256M \
 --network=$docker_network_name \
---network-alias=jackett \
+--network-alias=prowlarr \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
 -e PUID=`id -u` -e PGID=`id -g` \
--v $base_data_dir/jackett/config:/config \
+-v $base_data_dir/prowlarr/config:/config \
 -v $base_data_dir/public/downloads:/downloads \
 -v $base_data_dir/public/:/data \
---label 'traefik.http.routers.jackett.rule=Host(`jackett'.$domain'`)' \
---label "traefik.http.routers.jackett.tls=true" \
---label "traefik.http.routers.jackett.tls.certresolver=traefik" \
---label "traefik.http.routers.jackett.tls.domains[0].main=jackett.$domain" \
---label "traefik.http.services.jackett.loadbalancer.server.port=9117" \
+--label 'traefik.http.routers.prowlarr.rule=Host(`prowlarr'.$domain'`)' \
+--label "traefik.http.routers.prowlarr.tls=true" \
+--label "traefik.http.routers.prowlarr.tls.certresolver=traefik" \
+--label "traefik.http.routers.prowlarr.tls.domains[0].main=prowlarr.$domain" \
+--label "traefik.http.services.prowlarr.loadbalancer.server.port=9696" \
 --label "traefik.enable=true" \
-lscr.io/linuxserver/jackett:$arch-latest
+lscr.io/linuxserver/prowlarr:$arch-latest
 
-echo "启动jackett容器"
-echo "访问 https://jackett.$domain "
+echo "启动prowlarr容器"
+echo "访问 https://prowlarr.$domain "

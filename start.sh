@@ -138,13 +138,6 @@ case $yn in
         ;;
 esac
 
-read -p "是否需要安装/重装 jackett? [y/n]:" yn
-case $yn in
-    [Yy]* )
-        sh ./scripts/install-jackett.sh $domain $base_data_dir $docker_network_name
-        ;;
-esac
-
 read -p "是否需要安装/重装 jellyfin? [y/n]:" yn
 case $yn in
     [Yy]* )
@@ -172,6 +165,13 @@ read -p "是否需要安装/重装 portainer? [y/n]:" yn
 case $yn in
     [Yy]* )
         sh ./scripts/install-portainer.sh $domain $base_data_dir $docker_network_name
+        ;;
+esac
+
+read -p "是否需要安装/重装 prowlarr? [y/n]:" yn
+case $yn in
+    [Yy]* )
+        sh ./scripts/install-prowlarr.sh $domain $base_data_dir $docker_network_name
         ;;
 esac
 
