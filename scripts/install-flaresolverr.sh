@@ -2,6 +2,8 @@
 domain=$1
 base_data_dir=$2
 docker_network_name=$3
+# 获取docker网络的网段
+docker_network_subnet=$(docker network inspect $docker_network_name | grep -w Subnet | awk -F '"' '{print $4}')
 
 `dirname $0`/stop-container.sh flaresolverr
 docker run -d \
@@ -12,5 +14,6 @@ docker run -d \
 -e LANG="zh_CN.UTF-8" \
 -e TZ="Asia/Shanghai" \
 -e LOG_LEVEL=warn \
+-e HOST="$docker_network_subnet" \
 -m 64M --memory-swap=128M \
 flaresolverr/flaresolverr:latest
