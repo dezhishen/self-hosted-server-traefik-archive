@@ -27,6 +27,7 @@
                 "qbittorrent",
                 "radarr",
                 "sonarr",
+                "traefik",
                 "vaultwarden",
                 "webdav"
             ],
