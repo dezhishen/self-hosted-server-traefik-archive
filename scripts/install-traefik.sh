@@ -83,7 +83,6 @@ docker run --name=traefik \
 --label "traefik.http.middlewares.traefik-auth.digestauth.users=$userlist" \
 --label "traefik.http.routers.traefik.middlewares=traefik-auth@docker" \
 --label "traefik.enable=true" \
--v /var/run/docker.sock:/var/run/docker.sock \
 -v $base_data_dir/traefik/acme:/acme traefik \
 --api \
 --api.dashboard=true \
