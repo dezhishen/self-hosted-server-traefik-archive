@@ -30,7 +30,6 @@ echo "webdav密码: $WEBDAV_AUTH_PASSWORD"
 
 `dirname $0`/stop-container.sh webdav
 
-rule=Host(`webdav.'$domain'`)'
 docker run --name webdav \
 --restart=always -d \
 --network=$docker_network_name --network-alias=webdav \
@@ -42,7 +41,7 @@ docker run --name webdav \
 -e GID=`id -g` \
 -e USERNAME=$WEBDAV_AUTH_USER \
 -e PASSWORD=$WEBDAV_AUTH_PASSWORD \
---label "traefik.http.routers.webdav.rule=$rule" \
+--label 'traefik.http.routers.webdav.rule=Host(`webdav.'$domain'`)' \
 --label "traefik.http.routers.webdav.tls=true" \
 --label "traefik.http.routers.webdav.tls.certresolver=traefik" \
 --label "traefik.http.routers.webdav.tls.domains[0].main=webdav.$domain" \
