@@ -62,5 +62,5 @@ docker run -d \
 -e RCLONE_REMOTE_NAME="$MY_BACKUP_RCLONE_REMOTE" \
 -e TZ=Asia/Shanghai \
 -e LANG=zh_CN.UTF-8 \
-ttionya/vaultwarden-back:latest
+ttionya/vaultwarden-backup:latest
 echo "备份服务启动完成"
