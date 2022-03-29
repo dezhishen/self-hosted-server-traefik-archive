@@ -23,9 +23,11 @@
                 "lidarr",
                 "ombi",
                 "portainer",
+                "prowlarr",
                 "qbittorrent",
                 "radarr",
                 "sonarr",
+                "traefik",
                 "vaultwarden",
                 "webdav"
             ],
