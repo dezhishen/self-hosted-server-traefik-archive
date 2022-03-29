@@ -167,5 +167,5 @@ freshrss|rss订阅器|推荐|https://github.com/FreshRSS/FreshRSS
 portainer|容器管理平台|推荐|https://github.com/portainer/portainer
 samba|smb协议的内网文件共享|强烈推荐|https://github.com/dperson/samba
 vaultwarden|用 Rust 编写并与上游 Bitwarden 客户端兼容的 Bitwarden 服务器 API 的替代实现|推荐|https://github.com/dani-garcia/vaultwarden
-vaultwarden-back|vaultwarden的备份程序|推荐|https://github.com/ttionya/vaultwarden-backup
+vaultwarden-backup|vaultwarden的备份程序|推荐|https://github.com/ttionya/vaultwarden-backup
 webdav|基于nginx的webdav服务|非必要|https://github.com/dezhishen/docker-nginx-webdav
