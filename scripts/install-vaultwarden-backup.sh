@@ -51,6 +51,7 @@ echo "备份压缩文件的密码为: $BACKUP_ZIP_PASSWORD"
 echo "备份到的rclone远程目录为: $MY_BACKUP_RCLONE_REMOTE"
 
 `dirname $0`/stop-container.sh vaultwarden-backup
+
 docker run -d \
 --restart=always \
 -m 50M \
