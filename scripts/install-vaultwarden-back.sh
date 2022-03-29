@@ -10,7 +10,7 @@ docker_network_name=$3
 `dirname $0`/create-dir.sh $base_data_dir/vaultwarden-back/config
 
 echo "当前rclone配置如下: "
-docker run --rm -it -v $base_data_dir/vaultwarden-back/config:/config ttionya/vaultwarden-back:latest rclone config show
+docker run --rm -it -v $base_data_dir/vaultwarden-back/config:/config ttionya/vaultwarden-backup:latest rclone config show
 
 echo ""
 
@@ -19,7 +19,7 @@ case $yn in
     [Yy]* )
         docker run --rm -it \
         -v $base_data_dir/vaultwarden-back/config:/config \
-        ttionya/vaultwarden-back:latest \
+        ttionya/vaultwarden-backup:latest \
         rclone config
         ;;
 esac
