@@ -62,7 +62,7 @@ fi
 echo "用户名: $TRAEFIK_AUTH_USER"
 echo "密码: $TRAEFIK_AUTH_PASSWORD"
 digest="$(printf "%s:%s:%s" "$TRAEFIK_AUTH_USER" "traefik" "$TRAEFIK_AUTH_PASSWORD" | md5sum | awk '{print $1}' )"
-userlist=$(printf "%s:%s:%s\n" "$user" "$realm" "$digest")
+userlist=$(printf "%s:%s:%s\n" "$TRAEFIK_AUTH_USER" "traefik" "$digest")
 
 echo "停止之前的traefik容器"
 docker_container_name=traefik
