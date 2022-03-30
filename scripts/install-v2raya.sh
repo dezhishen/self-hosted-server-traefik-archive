@@ -10,12 +10,12 @@ docker run -d \
     --name v2raya \
     --restart=always \
     -e LANG=C.UTF-8 \
-    -e HOST=0.0.0.0 \
     -e TZ=Asia/Shanghai \
     --network=$docker_network_name \
     --network-alias=v2raya \
     --label 'traefik.http.routers.v2raya.rule=Host(`v2raya'.$domain'`)' \
-    --label "traefik.http.routers.v2raya.tls=false" \
+    --label 'traefik.http.routers.v2raya.priority=1000' \
+    --label 'traefik.http.routers.v2raya.entrypoints=web' \
     --label "traefik.http.services.v2raya.loadbalancer.server.port=2017" \
     --label "traefik.enable=true" \
     -v $base_data_dir/v2raya:/etc/v2raya \
