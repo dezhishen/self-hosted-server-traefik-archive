@@ -149,10 +149,12 @@ chmod +x -R ./scripts
 #### 外网
 - 通过cloudflare服务器的代理访问
 #### 容器
-- 容器均挂载在创建的容器网络上
+- 容器均挂载在创建的(bridge)容器网络上
     - traefik 映射宿主机 80/443
     - samba 映射宿主机 139/445 端口
     - ddns 网络模式为hosts以获取ipv6地址
+- 部分需要upnp的容器同时挂载在(macvlan)容器网络上
+    - 如:qbittorrent
 ## 应用清单
 
 名称|说明|安装选项|官网
