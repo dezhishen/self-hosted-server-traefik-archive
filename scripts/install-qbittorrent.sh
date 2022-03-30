@@ -21,7 +21,7 @@ if [ -n "$docker_network_exists" ]; then
     echo "容器网络 $docker_macvlan_network_name 已存在"
     #if $docker_macvlan_network_name's driver != macvlan exit
     docker_network_driver=$(docker network inspect $docker_macvlan_network_name | grep Driver | awk '{print $2}' | grep macvlan)
-    if [ -z "$docker_network_driver"]; then
+    if [ -z "$docker_network_driver" ]; then
         echo "容器网络 $docker_macvlan_network_name 的驱动不是macvlan,请检查"
         exit 0
     fi
