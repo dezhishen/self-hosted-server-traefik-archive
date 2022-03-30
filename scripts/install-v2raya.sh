@@ -10,6 +10,7 @@ docker run -d \
     --name v2raya \
     --restart=always \
     -e LANG=C.UTF-8 \
+    -e HOST=0.0.0.0 \
     -e TZ=Asia/Shanghai \
     --network=$docker_network_name \
     --network-alias=v2raya \
