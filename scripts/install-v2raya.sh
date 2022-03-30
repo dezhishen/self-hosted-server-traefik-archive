@@ -16,12 +16,15 @@ docker run -d \
     --label 'traefik.http.routers.v2raya.rule=Host(`v2raya'.$domain'`)' \
     --label 'traefik.http.routers.v2raya.priority=1000' \
     --label 'traefik.http.routers.v2raya.entrypoints=web' \
+    --label 'traefik.http.routers.v2raya.service=v2raya' \
     --label "traefik.http.services.v2raya.loadbalancer.server.port=2017" \
     --label 'traefik.http.routers.v2raya-proxy.rule=Host(`v2raya-proxy'.$domain'`)' \
     --label "traefik.http.routers.v2raya-proxy.tls=false" \
+    --label 'traefik.http.routers.v2raya-proxy.service=v2raya-proxy' \
     --label "traefik.http.services.v2raya-proxy.loadbalancer.server.port=20171" \
     --label 'traefik.http.routers.v2raya-proxy-rule.rule=Host(`v2raya-proxy-rule'.$domain'`)' \
     --label "traefik.http.routers.v2raya-proxy-rule.tls=false" \
+    --label 'traefik.http.routers.v2raya-proxy-rule.service=v2raya-proxy-rule' \
     --label "traefik.http.services.v2raya-proxy-rule.loadbalancer.server.port=20172" \
     --label "traefik.enable=true" \
     -v $base_data_dir/v2raya:/etc/v2raya \
