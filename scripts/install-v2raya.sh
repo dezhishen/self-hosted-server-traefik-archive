@@ -14,10 +14,7 @@ docker run -d \
     --network=$docker_network_name \
     --network-alias=v2raya \
     --label 'traefik.http.routers.v2raya.rule=Host(`v2raya'.$domain'`)' \
-    --label "traefik.http.routers.v2raya.tls=true" \
-    --label "traefik.http.routers.v2raya.tls.certresolver=traefik" \
-    --label "traefik.http.routers.v2raya.tls.domains[0].main=v2raya.$domain" \
-    --label "traefik.http.services.v2raya.loadbalancer.server.port=8989" \
+    --label "traefik.http.routers.v2raya.tls=false" \
     --label "traefik.enable=true" \
     -v $base_data_dir/v2raya:/etc/v2raya \
   mzz2017/v2raya
