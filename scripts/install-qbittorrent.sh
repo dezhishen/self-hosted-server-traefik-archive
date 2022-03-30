@@ -59,7 +59,7 @@ esac
 docker run -d --name=qbittorrent \
 --restart=always \
 -m 50M --memory-swap=100M \
---network=$docker_macvlan_network_name \
+--network=docker_network_name$ \
 --network-alias=qbittorrent \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
@@ -76,7 +76,7 @@ docker run -d --name=qbittorrent \
 lscr.io/linuxserver/qbittorrent:$arch-latest
 
 echo "加入到bridge网络中..."
-docker network connect $docker_network_name qbittorrent --alias qbittorrent
+docker network connect $docker_macvlan_network_name qbittorrent --alias qbittorrent
 echo "启动qbittorrent容器"
 echo "访问 https://qbittorrent.$domain "
 echo "默认用户名: admin 密码: adminadmin"
