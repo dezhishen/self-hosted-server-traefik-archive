@@ -3,7 +3,11 @@ domain=$1
 base_data_dir=$2
 docker_network_name=$3
 
-docker build https://ghproxy.sdniu.workers.dev/https://github.com/dezhishen/docker-nginx-webdav.git -t dezhishen/docker-nginx-webdav
+echo "构建镜像"
+
+docker build \
+    https://ghproxy.com/https://github.com/angelnu/docker-apache-webdav.git \
+    -t angelnu/apache-webdav:latest
 
 WEBDAV_AUTH_USER=$(`dirname $0`/get-args.sh WEBDAV_AUTH_USER 用户名)
 if [ -z "$WEBDAV_AUTH_USER" ]; then
@@ -30,21 +34,21 @@ echo "webdav密码: $WEBDAV_AUTH_PASSWORD"
 
 `dirname $0`/stop-container.sh webdav
 
-docker run --name webdav \
+docker run --name=webdav \
 --restart=always -d \
---network=$docker_network_name --network-alias=webdav \
 -m 128M --memory-swap=256M \
--v $base_data_dir/public:/media \
+--network=$docker_network_name --network-alias=webdav \
+-e USERNAME=$WEBDAV_AUTH_USER \
+-e PASSWORD=$WEBDAV_AUTH_PASSWORD \
+-v $(pwd):/media \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
 -e UID=`id -u` \
 -e GID=`id -g` \
--e USERNAME=$WEBDAV_AUTH_USER \
--e PASSWORD=$WEBDAV_AUTH_PASSWORD \
 --label 'traefik.http.routers.webdav.rule=Host(`webdav.'$domain'`)' \
 --label "traefik.http.routers.webdav.tls=true" \
 --label "traefik.http.routers.webdav.tls.certresolver=traefik" \
 --label "traefik.http.routers.webdav.tls.domains[0].main=webdav.$domain" \
 --label "traefik.http.services.webdav.loadbalancer.server.port=80" \
 --label "traefik.enable=true" \
-dezhishen/docker-nginx-webdav
+angelnu/apache-webdav:latest
