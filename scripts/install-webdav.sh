@@ -3,10 +3,6 @@ domain=$1
 base_data_dir=$2
 docker_network_name=$3
 
-echo "构建镜像"
-
-docker build https://ghproxy.com/https://github.com/angelnu/docker-apache-webdav.git -t angelnu/apache-webdav:latest
-
 WEBDAV_AUTH_USER=$(`dirname $0`/get-args.sh WEBDAV_AUTH_USER 用户名)
 if [ -z "$WEBDAV_AUTH_USER" ]; then
     read -p "请输入webdav用户名:" WEBDAV_AUTH_USER
@@ -38,7 +34,7 @@ docker run --name=webdav \
 --network=$docker_network_name --network-alias=webdav \
 -e USERNAME=$WEBDAV_AUTH_USER \
 -e PASSWORD=$WEBDAV_AUTH_PASSWORD \
--v $(pwd):/media \
+-v $base_data_dir/public:/media \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
 -e UID=`id -u` \
