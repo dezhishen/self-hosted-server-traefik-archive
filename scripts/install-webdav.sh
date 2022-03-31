@@ -5,9 +5,7 @@ docker_network_name=$3
 
 echo "构建镜像"
 
-docker build \
-    https://ghproxy.com/https://github.com/angelnu/docker-apache-webdav.git \
-    -t angelnu/apache-webdav:latest
+docker build https://ghproxy.com/https://github.com/angelnu/docker-apache-webdav.git -t angelnu/apache-webdav:latest
 
 WEBDAV_AUTH_USER=$(`dirname $0`/get-args.sh WEBDAV_AUTH_USER 用户名)
 if [ -z "$WEBDAV_AUTH_USER" ]; then
