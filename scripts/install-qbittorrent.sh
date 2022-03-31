@@ -76,7 +76,7 @@ docker run -d --name=qbittorrent \
 lscr.io/linuxserver/qbittorrent:$arch-latest
 
 echo "加入到bridge网络中..."
-docker network connect $docker_macvlan_network_name qbittorrent --alias qbittorrent
+docker network connect $docker_macvlan_network_name qbittorrent --alias qbittorrent-macvlan
 echo "启动qbittorrent容器"
 echo "访问 https://qbittorrent.$domain "
 echo "默认用户名: admin 密码: adminadmin"
