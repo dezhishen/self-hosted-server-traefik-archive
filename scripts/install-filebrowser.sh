@@ -7,13 +7,13 @@ docker_network_name=$3
 `dirname $0`/stop-container.sh filebrowser
 if [ ! -f $base_data_dir/filebrowser/filebrowser.db ];then
     echo "filebrowser.db 不存在，复制./filebrowser/filebrowser.db到$base_data_dir/filebrowser/filebrowser.db"
-    cp  -f ./filebrowser/filebrowser.db $base_data_dir/filebrowser/filebrowser.db 
+    cp  -f `dirname $0`/../filebrowser/filebrowser.db $base_data_dir/filebrowser/filebrowser.db 
 else
     echo "filebrowser.db 已存在，不需要复制,filebrowser.db already exist"
 fi
 if [ ! -f $base_data_dir/filebrowser/filebrowser.json ];then
     echo "filebrowser.json 不存在，复制./filebrowser/filebrowser.json到$base_data_dir/filebrowser/filebrowser.json"
-    cp  -f ./filebrowser/filebrowser.json $base_data_dir/filebrowser/filebrowser.json
+    cp  -f `dirname $0`/../filebrowser/filebrowser.json $base_data_dir/filebrowser/filebrowser.json
 else
     echo "filebrowser.json 已存在，不需要复制,filebrowser.json already exist"
 fi

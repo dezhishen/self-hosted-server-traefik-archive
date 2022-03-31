@@ -26,6 +26,16 @@ fi
 echo "webdav用户名: $WEBDAV_AUTH_USER"
 echo "webdav密码: $WEBDAV_AUTH_PASSWORD"
 
+
+`dirname $0`/create-dir.sh $base_data_dir/webdav
+`dirname $0`/create-dir.sh $base_data_dir/webdav/conf
+if [ ! -f $base_data_dir/webdav/conf/dav.conf ];then
+    echo "dav.conf 不存在，复制./webdav/dav.conf到$base_data_dir/webdav/conf/dav.conf"
+    cp  -f `dirname $0`/../webdav/dav.conf $base_data_dir/webdav/conf/dav.conf
+else
+    echo "dav.conf 已存在，不需要复制"
+fi
+
 `dirname $0`/stop-container.sh webdav
 
 docker run --name=webdav \
@@ -35,6 +45,7 @@ docker run --name=webdav \
 -e USERNAME=$WEBDAV_AUTH_USER \
 -e PASSWORD=$WEBDAV_AUTH_PASSWORD \
 -v $base_data_dir/public:/media \
+-v $base_data_dir/webdav/conf/dav.conf:/etc/apache2/conf.d/dav.conf \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
 -e UID=`id -u` \
