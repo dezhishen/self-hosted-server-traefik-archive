@@ -29,7 +29,7 @@ esac
 `dirname $0`/stop-container.sh readarr
 docker run -d --name=readarr \
 --restart=always \
--m 128M --memory-swap=256M \
+-m 64M --memory-swap=128M \
 --network=$docker_network_name \
 --network-alias=readarr \
 -e TZ="Asia/Shanghai" \
