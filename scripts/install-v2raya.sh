@@ -14,7 +14,6 @@ docker run -d \
     --network=$docker_network_name \
     --network-alias=v2raya \
     --label 'traefik.http.routers.v2raya.rule=Host(`v2raya'.$domain'`)' \
-    --label 'traefik.http.routers.v2raya.priority=1000' \
     --label 'traefik.http.routers.v2raya.entrypoints=web' \
     --label 'traefik.http.routers.v2raya.service=v2raya' \
     --label "traefik.http.routers.v2raya.tls=true" \
