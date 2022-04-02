@@ -30,3 +30,6 @@ docker network connect $docker_network_name v2raya
 
 echo "加入到macvlan网络中..."
 docker network connect $docker_macvlan_network_name v2raya --alias v2raya-macvlan
+
+ip=$(docker exec -it v2raya ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
+echo "v2raya's ip is $ip" 

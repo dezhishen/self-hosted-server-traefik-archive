@@ -57,3 +57,7 @@ docker network connect $docker_macvlan_network_name qbittorrent --alias qbittorr
 echo "启动qbittorrent容器"
 echo "访问 https://qbittorrent.$domain "
 echo "默认用户名: admin 密码: adminadmin"
+
+# 获取 网卡 eth1 的 ip
+ip=$(docker exec -it qbittorrent ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
+echo "qbittorrent's ip is $ip" 
