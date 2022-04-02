@@ -17,9 +17,9 @@ docker run -d \
     --label 'traefik.http.routers.v2raya.priority=1000' \
     --label 'traefik.http.routers.v2raya.entrypoints=web' \
     --label 'traefik.http.routers.v2raya.service=v2raya' \
-    --label "traefik.http.routers.vaultwarden.tls=true" \
-    --label "traefik.http.routers.vaultwarden.tls.certresolver=traefik" \
-    --label "traefik.http.routers.vaultwarden.tls.domains[0].main=v2raya.$domain" \
+    --label "traefik.http.routers.v2raya.tls=true" \
+    --label "traefik.http.routers.v2raya.tls.certresolver=traefik" \
+    --label "traefik.http.routers.v2raya.tls.domains[0].main=v2raya.$domain" \
     --label "traefik.http.services.v2raya.loadbalancer.server.port=2017" \
     --label "traefik.enable=true" \
     -v $base_data_dir/v2raya:/etc/v2raya \
