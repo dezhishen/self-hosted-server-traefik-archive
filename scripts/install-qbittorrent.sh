@@ -54,6 +54,7 @@ lscr.io/linuxserver/qbittorrent:$arch-latest
 docker_macvlan_network_name=$(`dirname $0`/get-args.sh docker_macvlan_network_name "macvlan的网络名")
 
 docker network connect $docker_macvlan_network_name qbittorrent --alias qbittorrent-macvlan
+
 echo "启动qbittorrent容器"
 echo "访问 https://qbittorrent.$domain "
 echo "默认用户名: admin 密码: adminadmin"

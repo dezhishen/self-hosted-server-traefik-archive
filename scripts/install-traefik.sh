@@ -98,3 +98,7 @@ docker run --name=traefik \
 --entrypoints.web.http.redirections.entryPoint.scheme=https \
 --certificatesresolvers.traefik.acme.email=$acme_email \
 --certificatesresolvers.traefik.acme.storage=/acme/acme.json
+
+`dirname $0`/create-docker-macvlan-network.sh
+docker_macvlan_network_name=$(`dirname $0`/get-args.sh docker_macvlan_network_name "macvlan的网络名")
+docker network connect $docker_macvlan_network_name traefik --alias traefik

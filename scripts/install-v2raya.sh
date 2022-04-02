@@ -2,10 +2,10 @@
 domain=$1
 base_data_dir=$2
 docker_network_name=$3
-`dirname $0`/create-docker-macvlan-network.sh
 docker_container_name=v2raya
 docker ps -a -q --filter "name=$docker_container_name" | grep -q . && docker rm -fv $docker_container_name
 
+`dirname $0`/create-docker-macvlan-network.sh
 
 docker_macvlan_network_name=$(`dirname $0`/get-args.sh docker_macvlan_network_name "macvlan的网络名")
 
