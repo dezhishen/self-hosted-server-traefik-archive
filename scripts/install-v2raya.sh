@@ -6,6 +6,9 @@ docker_network_name=$3
 docker_container_name=v2raya
 docker ps -a -q --filter "name=$docker_container_name" | grep -q . && docker rm -fv $docker_container_name
 
+
+docker_macvlan_network_name=$(`dirname $0`/get-args.sh docker_macvlan_network_name "macvlan的网络名")
+
 docker run -d \
     --name v2raya \
     --restart=always \
@@ -22,11 +25,6 @@ docker run -d \
     --label "traefik.enable=true" \
     -v $base_data_dir/v2raya:/etc/v2raya \
   mzz2017/v2raya
-
-docker_macvlan_network_name=$(`dirname $0`/get-args.sh docker_macvlan_network_name "macvlan的网络名")
-
-docker network connect $docker_network_name v2raya
-
 
 echo "加入到macvlan网络中..."
 docker network connect $docker_macvlan_network_name v2raya --alias v2raya-macvlan
