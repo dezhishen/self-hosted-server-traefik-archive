@@ -101,4 +101,4 @@ docker run --name=traefik \
 
 `dirname $0`/create-docker-macvlan-network.sh
 docker_macvlan_network_name=$(`dirname $0`/get-args.sh docker_macvlan_network_name "macvlan的网络名")
-docker network connect $docker_macvlan_network_name traefik --alias traefik
+docker network connect $docker_macvlan_network_name traefik --alias traefik-macvlan
