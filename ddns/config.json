@@ -30,6 +30,7 @@
                 "readarr",
                 "sonarr",
                 "traefik",
+                "v2raya",
                 "vaultwarden",
                 "webdav"
             ],

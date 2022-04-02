@@ -94,5 +94,7 @@ docker run --name=traefik \
 --entrypoints.websecure.address=":443" \
 --certificatesresolvers.traefik.acme.httpChallenge=true \
 --certificatesresolvers.traefik.acme.httpChallenge.entryPoint=web \
+--entrypoints.web.http.redirections.entryPoint.to=websecure \
+--entrypoints.web.http.redirections.entryPoint.scheme=https \
 --certificatesresolvers.traefik.acme.email=$acme_email \
 --certificatesresolvers.traefik.acme.storage=/acme/acme.json
