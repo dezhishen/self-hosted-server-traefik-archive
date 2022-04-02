@@ -2,7 +2,7 @@
 domain=$1
 base_data_dir=$2
 docker_network_name=$3
-
+`dirname $0`/create-docker-macvlan-network.sh
 docker_container_name=v2raya
 docker ps -a -q --filter "name=$docker_container_name" | grep -q . && docker rm -fv $docker_container_name
 
@@ -22,3 +22,9 @@ docker run -d \
     --label "traefik.enable=true" \
     -v $base_data_dir/v2raya:/etc/v2raya \
   mzz2017/v2raya
+
+docker network connect $docker_network_name v2raya
+
+
+echo "加入到macvlan网络中..."
+docker network connect $docker_macvlan_network_name v2raya --alias v2raya-macvlan
