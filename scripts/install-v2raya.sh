@@ -23,6 +23,8 @@ docker run -d \
     -v $base_data_dir/v2raya:/etc/v2raya \
   mzz2017/v2raya
 
+docker_macvlan_network_name=$(`dirname $0`/get-args.sh docker_macvlan_network_name "macvlan的网络名")
+
 docker network connect $docker_network_name v2raya
 
 
