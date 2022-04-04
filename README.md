@@ -155,6 +155,9 @@ chmod +x -R ./scripts
     - ddns 网络模式为hosts以获取ipv6地址
 - 部分需要upnp的容器同时挂载在(macvlan)容器网络上
     - 如:qbittorrent
+## todo
+- [ ] 根据类型更新应用清单
+- [ ] cloudflare优化方案提供
 ## 应用清单
 
 名称|说明|安装选项|官网
