@@ -34,7 +34,7 @@ esac
 
 docker run -d --name=qbittorrent \
 --restart=always \
--m 50M --memory-swap=100M \
+-m 64M --memory-swap=128M \
 --network=$docker_network_name \
 --network-alias=qbittorrent \
 -e TZ="Asia/Shanghai" \

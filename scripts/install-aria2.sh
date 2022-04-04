@@ -32,7 +32,7 @@ docker run -d   --name aria2   --restart unless-stopped   --log-opt max-size=1m 
 -e "TZ=Asia/Shanghai" \
 -e RPC_PORT=6800 \
 -e LISTEN_PORT=6888 \
--m 50M --memory-swap=128M \
+-m 64M --memory-swap=128M \
 -v $base_data_dir/aria2:/config \
 -v $base_data_dir/public/downloads:/downloads \
 -v $base_data_dir/public/:/data \

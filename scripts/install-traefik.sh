@@ -25,7 +25,7 @@ docker ps -a -q --filter "name=$docker_container_name" | grep -q . && docker rm 
 
 docker run \
     --privileged \
-    -m 32M --memory-swap 64M \
+    -m 16M --memory-swap 32M \
     -e CONTAINERS=1 \
     -e NETWORKS=1 \
     -d --restart=always \

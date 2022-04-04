@@ -13,7 +13,7 @@ docker run -d --name vaultwarden \
 --restart=always \
 -e TZ="Asia/Shanghai" \
 -e SIGNUPS_ALLOWED="false" \
--m 50M \
+-m 64M \
 -e LANG="zh_CN.UTF-8" \
 -u $(id -u):$(id -g) \
 --network=$docker_network_name --network-alias=vaultwarden \

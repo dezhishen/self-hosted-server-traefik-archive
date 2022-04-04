@@ -54,7 +54,7 @@ echo "备份到的rclone远程目录为: $MY_BACKUP_RCLONE_REMOTE"
 
 docker run -d \
 --restart=always \
--m 50M \
+-m 64M \
 --name vaultwarden-backup \
 -v $base_data_dir/vaultwarden-backup/config:/config \
 -v $base_data_dir/vaultwarden/data:/vaultwarden/data \

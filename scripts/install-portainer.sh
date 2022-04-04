@@ -14,7 +14,7 @@ docker run -d --restart=always \
 --name=portainer \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
--m 50M \
+-m 64M \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -v $base_data_dir/portainer/data:/data \
 --network=$docker_network_name --network-alias=portainer  \
