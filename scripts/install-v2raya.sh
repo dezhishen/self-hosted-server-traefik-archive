@@ -12,6 +12,7 @@ docker_macvlan_network_name=$(`dirname $0`/get-args.sh docker_macvlan_network_na
 docker run -d \
     --name v2raya \
     --restart=always \
+    -m 64M --memory-swap 128M \
     -e LANG=C.UTF-8 \
     -e TZ=Asia/Shanghai \
     --network=$docker_network_name \
