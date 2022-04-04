@@ -105,7 +105,8 @@ docker run --name=ddns \
 -u `id -u`:`id -g` \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
---restart=always -d -m 64M \
+--restart=always -d \
+--memory=32M --memory-swap=64M \
 -v $base_data_dir/ddns/config.json:/config.json \
 timothyjmiller/cloudflare-ddns:latest
 
