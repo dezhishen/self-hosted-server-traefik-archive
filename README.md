@@ -156,21 +156,67 @@ chmod +x -R ./scripts
 - 部分需要upnp的容器同时挂载在(macvlan)容器网络上
     - 如:qbittorrent
 ## todo
-- [ ] 根据类型更新应用清单
-- [ ] cloudflare优化方案提供
+- [ ] cloudflare速度优化方案提供
 ## 应用清单
 
-名称|说明|安装选项|官网
--|-|-|-
-ddns|用于动态ddns服务|必装|https://github.com/timothymiller/cloudflare-ddns/
-traefik|反向代理,自动https证书|必装|https://doc.traefik.io/traefik/
-adguardhome|dns服务器|强烈推荐|https://github.com/AdguardTeam/AdGuardHome
-aria2-pro|下载神器|推荐|https://github.com/P3TERX/Aria2-Pro-Docker
-aliyundrive-webdav|将阿里云盘代理为webdav访问|非必要|https://github.com/messense/aliyundrive-webdav
-filebrowser|web端文件管理器|推荐|https://github.com/filebrowser/filebrowser
-freshrss|rss订阅器|推荐|https://github.com/FreshRSS/FreshRSS
-portainer|容器管理平台|推荐|https://github.com/portainer/portainer
-samba|smb协议的内网文件共享|强烈推荐|https://github.com/dperson/samba
-vaultwarden|用 Rust 编写并与上游 Bitwarden 客户端兼容的 Bitwarden 服务器 API 的替代实现|推荐|https://github.com/dani-garcia/vaultwarden
-vaultwarden-backup|vaultwarden的备份程序|推荐|https://github.com/ttionya/vaultwarden-backup
-webdav|基于nginx的webdav服务|非必要|https://github.com/dezhishen/docker-nginx-webdav
+### 网络
+名称|说明
+-|-
+[adguardhome](https://github.com/AdguardTeam/AdGuardHome)|dns服务器
+[ddns](https://github.com/timothymiller/cloudflare-ddns)|用于动态ddns服务
+[traefik](https://doc.traefik.io/traefik/)|反向代理,自动https证书
+
+### 存储
+名称|说明
+-|-
+[aliyundrive-webdav](https://github.com/messense/aliyundrive-webdav)|将阿里云盘代理为webdav访问
+[filebrowser](https://github.com/filebrowser/filebrowser)|web端文件管理器|
+[samba](https://github.com/dperson/samba)|smb协议的内网文件共享
+[webdav](https://github.com/dezhishen/docker-nginx-webdav)|基于nginx的webdav服务
+
+### 下载
+名称|说明
+-|-
+[aria2-pro](https://github.com/P3TERX/Aria2-Pro-Docker)|aria2,不支持upnp,支持普通多线程下载
+[nzbget](https://github.com/linuxserver/docker-nzbget)|nzbget
+[qbittorrent](https://github.com/linuxserver/docker-qbittorrent)|qbittorrent,BT下载工具-支持upnp
+### 安全
+名称|说明
+-|-
+[vaultwarden](https://github.com/dani-garcia/vaultwarden)|密码托管,用 Rust 编写并与上游 Bitwarden 客户端兼容的 Bitwarden 服务器 API 的替代实现
+[vaultwarden-backup](https://github.com/ttionya/vaultwarden-backup)|vaultwarden的备份程序,可以加密后备份到各大网盘和云存储
+### 阅读
+名称|说明
+-|-
+[freshrss](https://github.com/FreshRSS/FreshRSS)|rss订阅器,支持信息流的订阅和聚集
+
+### 影音
+#### 配置
+- prowlarr,添加其他PVR应用,统一进行管理
+- prowlarr,添加index,进行资源的搜索
+- prowlarr,添加下载客户端 nzbget/qbit
+- nzbget/qbit,配置分类和自动保存文件夹
+- 下载完成后,PVR应用自动刮削信息
+- emby/jellyfin等提供外部统一入口
+#### 日常使用
+- prowlarr中进行搜索,点击下载
+- 等待下载完成
+- 下载完成后,进入emby或者jellyfin查看资源
+#### 清单
+名称|说明
+-|-
+[emby](https://github.com/linuxserver/docker-emby)|emby,用于组织和管理 电影/音乐/电视/照片,并将它们流式传输到智能电视、流媒体盒和移动设备。
+[jellyfin](https://github.com/linuxserver/docker-jellyfin)|jellyfin, Emby 和 Plex 的替代方案，通过多个应用程序从专用服务器向最终用户设备提供媒体。
+[lidarr](https://github.com/linuxserver/docker-lidarr)|Lidarr是用户的音乐收藏管理器。
+[ombi](https://github.com/linuxserver/docker-ombi)|Ombi允许您托管自己的 Plex 请求和用户管理系统。
+[prowlarr](https://github.com/linuxserver/docker-prowlarr)|prowlarr 与 Sonarr、Radarr、Lidarr 和 Readarr 无缝集成,提供PT/BT源管理,提供pt/bt等搜索,发送下载到qbit/nzbget。
+[radarr](https://github.com/linuxserver/docker-radarr)|radarr 电影管理。
+[readarr](https://github.com/linuxserver/docker-readarr)|readarr 书籍管理
+[sonarr](https://github.com/linuxserver/docker-sonarr)|sonarr 电视剧(追剧),管理
+
+
+
+
+
+
+
