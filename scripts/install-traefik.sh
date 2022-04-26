@@ -25,7 +25,7 @@ docker ps -a -q --filter "name=$docker_container_name" | grep -q . && docker rm 
 
 docker run \
     --privileged \
-    -m 32M --memory-swap 64M \
+    -m 16M --memory-swap 32M \
     -e CONTAINERS=1 \
     -e NETWORKS=1 \
     -d --restart=always \
@@ -62,7 +62,7 @@ fi
 echo "用户名: $TRAEFIK_AUTH_USER"
 echo "密码: $TRAEFIK_AUTH_PASSWORD"
 digest="$(printf "%s:%s:%s" "$TRAEFIK_AUTH_USER" "traefik" "$TRAEFIK_AUTH_PASSWORD" | md5sum | awk '{print $1}' )"
-userlist=$(printf "%s:%s:%s\n" "$user" "$realm" "$digest")
+userlist=$(printf "%s:%s:%s\n" "$TRAEFIK_AUTH_USER" "traefik" "$digest")
 
 echo "停止之前的traefik容器"
 docker_container_name=traefik
@@ -89,12 +89,13 @@ docker run --name=traefik \
 --api.insecure=true \
 --providers.docker=true \
 --providers.docker.endpoint=tcp://dockerproxy:2375 \
+--providers.docker.network=$docker_network_name \
 --providers.docker.exposedbydefault=false \
 --entrypoints.web.address=":80" \
---entrypoints.web.http.redirections.entryPoint.to=websecure \
---entrypoints.web.http.redirections.entryPoint.scheme=https \
 --entrypoints.websecure.address=":443" \
 --certificatesresolvers.traefik.acme.httpChallenge=true \
 --certificatesresolvers.traefik.acme.httpChallenge.entryPoint=web \
+--entrypoints.web.http.redirections.entryPoint.to=websecure \
+--entrypoints.web.http.redirections.entryPoint.scheme=https \
 --certificatesresolvers.traefik.acme.email=$acme_email \
 --certificatesresolvers.traefik.acme.storage=/acme/acme.json

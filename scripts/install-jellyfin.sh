@@ -44,3 +44,15 @@ docker run -d \
 --label "traefik.http.services.jellyfin.loadbalancer.server.port=8096" \
 --label "traefik.enable=true" \
 lscr.io/linuxserver/jellyfin:$arch-latest
+
+
+`dirname $0`/create-docker-macvlan-network.sh
+
+docker_macvlan_network_name=$(`dirname $0`/get-args.sh docker_macvlan_network_name "macvlan的网络名")
+
+
+echo "加入到macvlan网络中..."
+docker network connect $docker_macvlan_network_name jellyfin --alias jellyfin-macvlan
+
+ip=$(docker exec -it jellyfin ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
+echo "jellyfin's ip is $ip" 

@@ -6,6 +6,7 @@ docker_network_name=$3
 `dirname $0`/create-dir.sh $base_data_dir/qbittorrent
 `dirname $0`/create-dir.sh $base_data_dir/qbittorrent/config
 
+`dirname $0`/create-docker-macvlan-network.sh
 
 echo "请选择服务架构: "
 echo "1. x86-64	"
@@ -33,7 +34,7 @@ esac
 
 docker run -d --name=qbittorrent \
 --restart=always \
--m 50M --memory-swap=100M \
+-m 64M --memory-swap=128M \
 --network=$docker_network_name \
 --network-alias=qbittorrent \
 -e TZ="Asia/Shanghai" \
@@ -49,6 +50,15 @@ docker run -d --name=qbittorrent \
 --label "traefik.http.services.qbittorrent.loadbalancer.server.port=8080" \
 --label "traefik.enable=true" \
 lscr.io/linuxserver/qbittorrent:$arch-latest
+
+docker_macvlan_network_name=$(`dirname $0`/get-args.sh docker_macvlan_network_name "macvlan的网络名")
+
+docker network connect $docker_macvlan_network_name qbittorrent --alias qbittorrent-macvlan
+
 echo "启动qbittorrent容器"
 echo "访问 https://qbittorrent.$domain "
 echo "默认用户名: admin 密码: adminadmin"
+
+# 获取 网卡 eth1 的 ip
+ip=$(docker exec -it qbittorrent ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
+echo "qbittorrent's ip is $ip" 

@@ -22,7 +22,7 @@ in
 esac
 
 docker run -d --restart unless-stopped \
---log-opt max-size=10m -m 50M \
+--log-opt max-size=10m -m 64M \
 -v $base_data_dir/freshrss/data:/var/www/FreshRSS/data \
 -v $base_data_dir/extensions:/var/www/FreshRSS/extensions   \
 -e 'CRON_MIN=4,34' -e TZ=Asia/Shanghai \

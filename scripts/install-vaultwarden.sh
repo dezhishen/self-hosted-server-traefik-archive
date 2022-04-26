@@ -13,7 +13,7 @@ docker run -d --name vaultwarden \
 --restart=always \
 -e TZ="Asia/Shanghai" \
 -e SIGNUPS_ALLOWED="false" \
--m 50M \
+-m 64M \
 -e LANG="zh_CN.UTF-8" \
 -u $(id -u):$(id -g) \
 --network=$docker_network_name --network-alias=vaultwarden \
@@ -31,6 +31,6 @@ read -p "是否需要安装备份服务?(y/n)" yn
 case $yn in
     y|Y|yes|YES|Yes)
         echo "安装备份服务"
-        `dirname $0`/install-vaultwarden-back.sh $domain $base_data_dir $docker_network_name
+        `dirname $0`/install-vaultwarden-backup.sh $domain $base_data_dir $docker_network_name
     ;;
 esac

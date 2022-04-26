@@ -26,25 +26,25 @@ case $num in
         ;;
 esac
 
-`dirname $0`/stop-container.sh prowlarr
-docker run -d --name=prowlarr \
+`dirname $0`/stop-container.sh readarr
+docker run -d --name=readarr \
 --restart=always \
--m 128M --memory-swap=256M \
+-m 64M --memory-swap=128M \
 --network=$docker_network_name \
---network-alias=prowlarr \
+--network-alias=readarr \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
 -e PUID=`id -u` -e PGID=`id -g` \
--v $base_data_dir/prowlarr/config:/config \
+-v $base_data_dir/readarr/config:/config \
 -v $base_data_dir/public/downloads:/downloads \
 -v $base_data_dir/public/:/data \
---label 'traefik.http.routers.prowlarr.rule=Host(`prowlarr'.$domain'`)' \
---label "traefik.http.routers.prowlarr.tls=true" \
---label "traefik.http.routers.prowlarr.tls.certresolver=traefik" \
---label "traefik.http.routers.prowlarr.tls.domains[0].main=prowlarr.$domain" \
---label "traefik.http.services.prowlarr.loadbalancer.server.port=9696" \
+--label 'traefik.http.routers.readarr.rule=Host(`readarr'.$domain'`)' \
+--label "traefik.http.routers.readarr.tls=true" \
+--label "traefik.http.routers.readarr.tls.certresolver=traefik" \
+--label "traefik.http.routers.readarr.tls.domains[0].main=readarr.$domain" \
+--label "traefik.http.services.readarr.loadbalancer.server.port=8787" \
 --label "traefik.enable=true" \
-lscr.io/linuxserver/prowlarr:$arch-develop
+lscr.io/linuxserver/readarr:$arch-develop
 
-echo "启动prowlarr容器"
-echo "访问 https://prowlarr.$domain "
+echo "启动lidarr容器"
+echo "访问 https://readarr.$domain "

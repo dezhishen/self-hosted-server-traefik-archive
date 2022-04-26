@@ -86,6 +86,7 @@ echo "cloudflare的email: $CF_EMAIL"
 
 echo "正在复制配置文件"
 `dirname $0`/create-dir.sh $base_data_dir/ddns
+
 cp -f `dirname $0`/../ddns/config.json $base_data_dir/ddns/config.json
 sed -i `echo "s/\\$ipv4/$ddns_ipv4_enabled/g"` $base_data_dir/ddns/config.json
 sed -i `echo "s/\\$ipv6/$ddns_ipv6_enabled/g"` $base_data_dir/ddns/config.json
@@ -98,12 +99,14 @@ sed -i `echo "s/\\$account_email/$CF_EMAIL/g"` $base_data_dir/ddns/config.json
 `dirname $0`/stop-container.sh ddns
  
 echo "将以host网络模式启动ddns..."
+
 docker run --name=ddns \
 --network=host \
 -u `id -u`:`id -g` \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
---restart=always -d -m 50M \
+--restart=always -d \
+--memory=32M --memory-swap=64M \
 -v $base_data_dir/ddns/config.json:/config.json \
 timothyjmiller/cloudflare-ddns:latest
 
