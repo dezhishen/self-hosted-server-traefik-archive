@@ -31,6 +31,6 @@ docker run -d --restart=always --name=filebrowser \
 --label "traefik.http.routers.filebrowser.tls=true" \
 --label "traefik.http.routers.filebrowser.tls.certresolver=traefik" \
 --label "traefik.http.routers.filebrowser.tls.domains[0].main=filebrowser.$domain" \
---label "traefik.http.services.filebrowser.loadbalancer.server.port=80" \
+--label "traefik.http.services.filebrowser.loadbalancer.server.port=8080" \
 --label "traefik.enable=true" \
  filebrowser/filebrowser
