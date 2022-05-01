@@ -213,6 +213,8 @@ chmod +x -R ./scripts
 [radarr](https://github.com/linuxserver/docker-radarr)|radarr 电影管理。
 [readarr](https://github.com/linuxserver/docker-readarr)|readarr 书籍管理
 [sonarr](https://github.com/linuxserver/docker-sonarr)|sonarr 电视剧(追剧),管理
+[bazarr](https://github.com/linuxserver/docker-bazarr)|bazarr 字幕获取
+[chinesesubfinder](https://github.com/allanpk716/ChineseSubFinder)|中文字幕获取
 
 
 
