@@ -29,7 +29,7 @@ esac
 docker run -d \
 --restart=always \
 --name=bazarr \
--m 128M --memory-swap=256M \
+-m 64M --memory-swap=128M \
 --network=$docker_network_name \
 --network-alias=bazarr \
 -e TZ="Asia/Shanghai" \

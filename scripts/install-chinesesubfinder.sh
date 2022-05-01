@@ -8,7 +8,7 @@ docker_network_name=$3
 docker run -d \
 --restart=always \
 --name=chinesesubfinder \
--m 128M --memory-swap=256M \
+-m 64M --memory-swap=128M \
 --network=$docker_network_name \
 --network-alias=chinesesubfinder \
 -e TZ="Asia/Shanghai" \
