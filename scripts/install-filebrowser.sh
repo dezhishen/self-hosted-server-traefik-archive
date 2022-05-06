@@ -20,6 +20,7 @@ fi
 
 docker run -d --restart=always --name=filebrowser \
 -m 128M \
+--health-cmd curl -f "http://localhost:8080/health || exit 1" \
 --network=$docker_network_name --network-alias=filebrowser \
 -u $(id -u):$(id -g) \
 -v $base_data_dir:/srv \
