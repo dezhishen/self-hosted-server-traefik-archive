@@ -32,5 +32,4 @@ docker run -d --restart=always --name=livebook \
 -v $base_data_dir/livebook/data:/data \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
--u $(id -u):$(id -g) \
 livebook/livebook
