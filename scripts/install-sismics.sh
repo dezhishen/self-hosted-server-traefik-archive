@@ -29,7 +29,7 @@ docker run -d --restart=always --name=sismics \
 --label "traefik.http.services.sismics.loadbalancer.server.port=8080" \
 --label "traefik.enable=true" \
 -e DOCS_BASE_URL="https://sismics.$domain" \
--e DOCS_ADMIN_EMAIL_INIT="$SISMICS_ADMIN_EMAIL"
+-e DOCS_ADMIN_EMAIL_INIT="$SISMICS_ADMIN_EMAIL" \
 -v $base_data_dir/sismics/data:/data \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
