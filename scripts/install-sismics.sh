@@ -5,10 +5,10 @@ domain=$1
 base_data_dir=$2
 docker_network_name=$3
 
-SISMICS_ADMIN_EMAIL=$(`dirname $0`/get-args.sh SISMICS_EMAIL "sismics's admin email")
+SISMICS_ADMIN_EMAIL=$(`dirname $0`/get-args.sh SISMICS_ADMIN_EMAIL "sismics's admin email")
 if [ ! -n "$SISMICS_ADMIN_EMAIL" ]; then
     ## input your LIVEBOOK_PASSWORD,or defaut is amdin
-    read -p "please input the admin's email of sismics" SISMICS_ADMIN_EMAIL
+    read -p "please input the admin's email of sismics: " SISMICS_ADMIN_EMAIL
     if [ ! -n "$SISMICS_ADMIN_EMAIL" ]; then
         exit 1
     fi
