@@ -33,4 +33,4 @@ docker run -d --restart=always --name=sismics \
 -v $base_data_dir/sismics/data:/data \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
-sismics/sismics:v1.10
+sismics/docs:v1.10
