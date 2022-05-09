@@ -34,7 +34,8 @@
                 "traefik",
                 "v2raya",
                 "vaultwarden",
-                "webdav"
+                "webdav",
+                "wikijs"
             ],
             "proxied": true
         },
