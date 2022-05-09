@@ -37,6 +37,12 @@ docker run -d \
 -e PUID=`id -u` -e PGID=`id -g` \
 -v $base_data_dir/emby/config:/config \
 -v $base_data_dir/public/:/data \
+-v /opt/vc/lib:/opt/vc/lib \
+-v /dev/dri:/dev/dri \
+-v /dev/vchiq:/dev/vchiq \
+-v /dev/video10:/dev/video10 \
+-v /dev/video11:/dev/video11 \
+-v /dev/video12:/dev/video12 \
 --label 'traefik.http.routers.emby.rule=Host(`emby'.$domain'`)' \
 --label "traefik.http.routers.emby.tls=true" \
 --label "traefik.http.routers.emby.tls.certresolver=traefik" \
