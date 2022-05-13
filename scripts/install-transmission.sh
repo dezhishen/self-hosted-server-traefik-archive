@@ -52,6 +52,11 @@ fi
 echo "password: $TRANSMISSION_USER_PASSWORD"
 
 
+echo "用户名: $TRANSMISSION_USER_NAME"
+echo "密码: $TRANSMISSION_USER_PASSWORD"
+digest="$(printf "%s:%s:%s" "$TRANSMISSION_USER_NAME" "traefik" "$TRANSMISSION_USER_PASSWORD" | md5sum | awk '{print $1}' )"
+userlist=$(printf "%s:%s:%s\n" "$TRANSMISSION_USER_NAME" "traefik" "$digest")
+
 `dirname $0`/stop-container.sh transmission
 
 docker run -d --name=transmission \
@@ -61,8 +66,6 @@ docker run -d --name=transmission \
 --network-alias=transmission \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
--e USER="$TRANSMISSION_USER_NAME" \
--e PASS="$TRANSMISSION_USER_PASSWORD" \
 -e PUID=`id -u` -e PGID=`id -g` \
 -v $base_data_dir/transmission/config:/config \
 -v $base_data_dir/public/downloads:/downloads \
@@ -72,6 +75,8 @@ docker run -d --name=transmission \
 --label "traefik.http.routers.transmission.tls.certresolver=traefik" \
 --label "traefik.http.routers.transmission.tls.domains[0].main=transmission.$domain" \
 --label "traefik.http.services.transmission.loadbalancer.server.port=9091" \
+--label "traefik.http.middlewares.transmission-auth.digestauth.users=$userlist" \
+--label "traefik.http.routers.transmission.middlewares=transmission-auth@docker" \
 --label "traefik.enable=true" \
 lscr.io/linuxserver/transmission:$arch-latest
 
