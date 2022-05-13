@@ -29,6 +29,28 @@ case $num in
         ;;
 esac
 
+TRANSMISSION_USER_NAME=$(`dirname $0`/get-args.sh TRANSMISSION_USER_NAME "smb's userName")
+if [ ! -n "$TRANSMISSION_USER_NAME" ]; then
+    ## input your TRANSMISSION_USER_NAME,or defaut is amdin
+    read -p "请输入用户名默认,admin" TRANSMISSION_USER_NAME
+    if [ ! -n "$TRANSMISSION_USER_NAME" ]; then
+        TRANSMISSION_USER_NAME="amdin"
+    fi
+    `dirname $0`/set-args.sh TRANSMISSION_USER_NAME $TRANSMISSION_USER_NAME
+fi
+
+echo "user name:$TRANSMISSION_USER_NAME"
+TRANSMISSION_USER_PASSWORD=$(`dirname $0`/get-args.sh TRANSMISSION_USER_PASSWORD "transmission's userPassword" )
+if [ ! -n "$TRANSMISSION_USER_PASSWORD" ]; then
+    ## input your TRANSMISSION_USER_PASSWORD,or random
+    read -p "请输入密码，为空则自动生成" TRANSMISSION_USER_PASSWORD
+    if [ ! -n "$TRANSMISSION_USER_PASSWORD" ]; then
+        TRANSMISSION_USER_PASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
+    fi
+    `dirname $0`/set-args.sh TRANSMISSION_USER_PASSWORD $TRANSMISSION_USER_PASSWORD
+fi
+echo "password: $TRANSMISSION_USER_PASSWORD"
+
 
 `dirname $0`/stop-container.sh transmission
 
@@ -39,6 +61,8 @@ docker run -d --name=transmission \
 --network-alias=transmission \
 -e TZ="Asia/Shanghai" \
 -e LANG="zh_CN.UTF-8" \
+-e USER="$TRANSMISSION_USER_NAME" \
+-e PASS="$TRANSMISSION_USER_PASSWORD" \
 -e PUID=`id -u` -e PGID=`id -g` \
 -v $base_data_dir/transmission/config:/config \
 -v $base_data_dir/public/downloads:/downloads \
