@@ -1,4 +1,5 @@
 # 自托管服务脚本
+**新的项目** ===> https://github.com/dezhishen/self-hosted-server-traefik
 
 [![](https://img.shields.io/github/license/dezhishen/self-hosted-server-traefik.svg?style=for-the-badge&logo=github)](./LICENSE)
 [![](https://img.shields.io/github/stars/dezhishen/self-hosted-server-traefik.svg?style=for-the-badge&logo=github)](https://github.com/dezhishen/self-hosted-server-traefik/stargazers)
